@@ -1,0 +1,75 @@
+Make the "Possible Triggers" section fully functional and visually accurate by adding icons (as per design) and ensuring the Save Log API works correctly without errors.
+
+🖼️ 1. Add Icons to “Possible Triggers” Buttons
+Each trigger button (e.g. Stress, Weather, Food) must include the corresponding icon to match the original Figma design.
+
+Place the icon on the left side of the trigger label text.
+
+Use an appropriate consistent icon library (e.g., lucide-react, react-icons, or custom SVGs if provided).
+
+Ensure spacing, alignment, and font remain as per current design.
+
+Suggested Icon Mapping:
+
+Trigger	Icon suggestion
+Stress	🧠 or LucideBrain
+Weather	🌦️ or CloudRain
+Food	🍽️ or Utensils
+Poor Sleep	🛌 or BedDouble
+Exercise	🏋️ or Dumbbell
+Screen Time	🖥️ or Monitor
+
+🎯 Important: The styling, color, and padding must match the rest of the UI. Do not alter the button layout or font styles.
+
+⚙️ 2. Fix Save Log Button Functionality
+✅ Issue: Clicking Save Log shows the error:
+
+❌ "Failed to save symptom log. Please try again."
+
+🔍 Root Cause to Investigate:
+
+Missing or incorrect API endpoint call
+
+Improper request payload format
+
+Missing required fields in API call (e.g., empty symptoms or triggers)
+
+Backend validation errors
+
+userId not passed correctly or JWT missing
+
+🔧 Required Fix:
+
+The Save Log button must call a working endpoint (e.g. POST /api/symptoms-log)
+
+Ensure payload structure matches what backend expects:
+
+json
+Copy
+Edit
+{
+  "userId": "user123",
+  "symptoms": ["Headache", "Light Sensitivity"],
+  "intensity": 7,
+  "occurredAt": "2025-06-24T14:00:00Z",
+  "triggers": ["Stress", "Poor Sleep"]
+}
+If any field is missing or empty, prevent API call and show clear field-level validation message
+
+On successful save:
+
+✅ Show success toast or modal
+
+✅ Optionally redirect to History screen or show log summary
+
+On failure:
+
+❗ Show full API error message in console for debugging
+
+❗ Improve user-facing error message: “Please ensure all fields are filled correctly.”
+
+🛡️ Strict Guidelines (Do NOT Ignore)
+✅ Do NOT make any changes to design layout, styles, or other screens
+✅ Ensure backward compatibility with existing log types (e.g., daily log)
+✅ Encapsulate new icon+data logic inside the LogSymptomsScreen.tsx only
+✅ Use user authentication from global context/JWT for userId

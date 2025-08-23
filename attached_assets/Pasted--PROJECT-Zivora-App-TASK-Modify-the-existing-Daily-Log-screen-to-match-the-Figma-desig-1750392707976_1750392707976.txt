@@ -1,0 +1,61 @@
+🟣 PROJECT: Zivora App  
+🔧 TASK: Modify the existing "Daily Log" screen to **match the Figma design layout and style** for mobile devices exactly.  
+
+🎯 GOAL: The current Daily Log screen is working but **does not visually match** the design shown in Figma. You must adjust the layout, spacing, typography, and interactions to **look exactly like the mobile screenshot** provided.
+
+---
+
+### 🧭 ENTRY POINT:
+- This screen opens when user clicks **"View Risk Factors"** on the Dashboard.
+
+---
+
+### ✅ ACTION ITEMS
+
+🔹 1. **Overall Layout**
+- Apply **vertical scroll** layout
+- Add **top bar with back icon**, title `Daily Log`, and current date (e.g., January 15, 2025)  
+- Use consistent **spacing and padding** as shown in the Figma design
+
+🔹 2. **Food Intake Section**
+- Replace the large dotted box with a **rounded container** showing a camera icon and text “Take photo of your meal” (centered)
+- Place **barcode scan input** below with label and icon matching the Figma style
+- Place **manual entry text area** with correct border-radius and placeholder
+
+🔹 3. **Headache Logging Section**
+- Severity selection should be 4 **toggle buttons**: None, Mild, Moderate, Severe  
+- Match **color theme and selected button state** exactly (e.g., purple for selected Severe)
+- Duration should have **2 side-by-side inputs** with proper label and placeholder
+
+🔹 4. **Custom Triggers Section**
+- Divide into 3 parts:
+  - **Stress Events / Emotions** with + Add option
+  - **Specific Activities** (e.g., Travel, Exercise, etc.) with + Add
+  - **Medications** with + Add medication input
+- Each tag (e.g., “Stressed”, “Exercise”) should be shown as **rounded pill buttons** with padding, dark background, and light text
+
+🔹 5. **Save Entry Button**
+- Should be a **sticky button at bottom**, full-width, with vibrant purple background and white text
+
+---
+
+### 💡 UI STYLE GUIDE (from Figma)
+
+- Use dark mode theme
+- Rounded corners for inputs and cards
+- Spacing between sections must be consistent
+- Use icons as seen in the Figma (camera, barcode, plus, back arrow)
+- Font size, padding, and color should mirror the mobile screenshot
+
+---
+
+### 🔗 BACKEND FUNCTIONALITY (Already Exists)
+- On clicking `Save Entry`, call the existing API `POST /api/daily-log` with the proper JSON data.
+
+---
+
+### 📌 Notes
+- You can reuse components like `Input`, `Button`, and `Tag` if already created
+- Match colors and layout 1:1 with the mobile Figma layout
+- Prioritize responsive behavior and visual fidelity
+

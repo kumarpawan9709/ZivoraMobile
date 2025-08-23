@@ -1,0 +1,67 @@
+We are building a migraine tracking web app using React + Node.js. We already have a few screens developed. Now continue development by implementing the following features without modifying any existing screens or logic.
+
+🔧 Features to implement:
+1. "Continue with Google"
+Use @react-oauth/google on frontend.
+
+Implement Google OAuth login with Google Client ID (assume placeholder like REPLACE_WITH_GOOGLE_CLIENT_ID).
+
+On success, send the JWT to backend at /api/auth/google.
+
+On backend, verify the token using Google's API and log in or register the user.
+
+2. "Continue with Apple"
+Use Apple JS SDK to enable Sign in with Apple on the login screen.
+
+Use https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js.
+
+Use placeholder clientId and redirectURI for now. Just prepare the full working flow with dummy keys.
+
+On frontend, initiate login popup and send ID token to backend.
+
+On backend, create /api/auth/apple route to verify Apple token and authenticate user.
+
+3. Terms of Service Screen
+Route: /terms
+
+Page shows placeholder "Terms of Service" content using scrollable text.
+
+Add a back button on top-left corner to navigate back to the previous screen.
+
+4. Privacy Policy Screen
+Route: /privacy
+
+Page shows placeholder "Privacy Policy" content in scrollable container.
+
+Include back button to return.
+
+5. Forgot Password Screen
+Add "Forgot Password?" link below password field on Login screen.
+
+Clicking it navigates to /forgot-password
+
+Screen has:
+
+Email input field.
+
+Submit button → calls /api/auth/forgot-password POST API.
+
+Show confirmation that reset instructions were sent.
+
+6. Fix Back Button (Login/Signup Screen)
+On Login and Signup screens, ensure that the back arrow in the top-left works properly:
+
+Navigates back to previous screen or welcome screen.
+
+Use useNavigate() from react-router-dom.
+
+📦 Notes:
+Use React functional components and TailwindCSS for UI if applicable.
+
+Use Express.js on backend.
+
+Maintain proper file structure (components/, routes/, pages/, etc.)
+
+Reuse layout styles from existing screens to maintain consistency.
+
+Don’t overwrite existing onboarding screens or homepage logic.

@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Zivora Custom App Icon Converter</title>
+    <style>
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; 
+            padding: 20px; 
+            background: #f5f5f5; 
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .container { 
+            background: white; 
+            padding: 30px; 
+            border-radius: 15px; 
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        .upload-area {
+            border: 2px dashed #007AFF;
+            border-radius: 10px;
+            padding: 40px;
+            text-align: center;
+            margin: 20px 0;
+            background: #f8f9ff;
+        }
+        .upload-area.dragover {
+            background: #e6f0ff;
+            border-color: #0056b3;
+        }
+        .upload-btn {
+            background: #007AFF;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px;
+        }
+        .upload-btn:hover { background: #0056b3; }
+        .icon-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); 
+            gap: 20px; 
+            margin: 30px 0; 
+        }
+        .icon-item { 
+            text-align: center; 
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #e9ecef;
+        }
+        .icon-item canvas { 
+            border-radius: 15px; 
+            margin: 10px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+        }
+        .download-btn { 
+            background: #34C759; 
+            color: white; 
+            border: none; 
+            padding: 8px 15px; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            font-size: 12px;
+            margin: 5px;
+        }
+        .download-btn:hover { background: #2ba048; }
+        .download-all {
+            background: #FF9500;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            margin: 20px 0;
+            display: block;
+            width: 100%;
+        }
+        .download-all:hover { background: #e6850e; }
+        .preview-area {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .preview-img {
+            max-width: 200px;
+            max-height: 200px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        .instructions {
+            background: #e8f4f8;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #007AFF;
+        }
+        .error { 
+            color: #FF3B30; 
+            background: #ffebea; 
+            padding: 15px; 
+            border-radius: 8px; 
+            margin: 10px 0; 
+        }
+        .success { 
+            color: #34C759; 
+            background: #eafaf1; 
+            padding: 15px; 
+            border-radius: 8px; 
+            margin: 10px 0; 
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 Zivora Custom App Icon Converter</h1>
+        <p>Convert your custom app icon into all required iOS sizes for App Store submission</p>
+        
+        <div class="instructions">
+            <h3>📋 Instructions:</h3>
+            <ol>
+                <li>Upload your custom app icon image (PNG, JPG, or JPEG)</li>
+                <li>The tool will generate all required iOS app icon sizes</li>
+                <li>Download all icons and replace them in your Xcode project</li>
+                <li>Build and resubmit to App Store</li>
+            </ol>
+        </div>
+        
+        <div class="upload-area" id="uploadArea">
+            <h3>📎 Upload Your Custom App Icon</h3>
+            <p>Drag and drop your icon here, or click to select</p>
+            <input type="file" id="fileInput" accept="image/*" style="display: none;">
+            <button class="upload-btn" onclick="document.getElementById('fileInput').click()">
+                Choose Icon File
+            </button>
+        </div>
+        
+        <div class="preview-area" id="previewArea" style="display: none;">
+            <h3>📱 Original Icon Preview:</h3>
+            <img id="previewImg" class="preview-img" alt="Icon preview">
+        </div>
+        
+        <div id="messageArea"></div>
+        
+        <div class="icon-grid" id="iconGrid" style="display: none;"></div>
+        
+        <button class="download-all" id="downloadAllBtn" style="display: none;" onclick="downloadAllIcons()">
+            📥 Download All iOS App Icons
+        </button>
+    </div>
+
+    <script>
+        const iconSizes = [
+            { size: 1024, name: "App Store Marketing", filename: "AppIcon-1024.png", display: 100 },
+            { size: 180, name: "iPhone 3x (60pt)", filename: "AppIcon-180.png", display: 80 },
+            { size: 120, name: "iPhone 2x (60pt)", filename: "AppIcon-120.png", display: 70 },
+            { size: 87, name: "Settings 3x (29pt)", filename: "AppIcon-87.png", display: 60 },
+            { size: 80, name: "Spotlight 2x (40pt)", filename: "AppIcon-80.png", display: 60 },
+            { size: 60, name: "Notification 3x (20pt)", filename: "AppIcon-60.png", display: 50 },
+            { size: 58, name: "Settings 2x (29pt)", filename: "AppIcon-58.png", display: 50 },
+            { size: 40, name: "Spotlight 2x (20pt)", filename: "AppIcon-40.png", display: 40 },
+            { size: 29, name: "Settings 1x (29pt)", filename: "AppIcon-29.png", display: 35 },
+            { size: 20, name: "Notification 1x (20pt)", filename: "AppIcon-20.png", display: 30 }
+        ];
+
+        let sourceImage = null;
+        let generatedIcons = [];
+
+        // File input handling
+        document.getElementById('fileInput').addEventListener('change', handleFileSelect);
+        
+        // Drag and drop handling
+        const uploadArea = document.getElementById('uploadArea');
+        uploadArea.addEventListener('dragover', handleDragOver);
+        uploadArea.addEventListener('dragleave', handleDragLeave);
+        uploadArea.addEventListener('drop', handleFileDrop);
+
+        function handleFileSelect(e) {
+            const file = e.target.files[0];
+            if (file) processFile(file);
+        }
+
+        function handleDragOver(e) {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        }
+
+        function handleDragLeave(e) {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+        }
+
+        function handleFileDrop(e) {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            const file = e.dataTransfer.files[0];
+            if (file) processFile(file);
+        }
+
+        function processFile(file) {
+            if (!file.type.startsWith('image/')) {
+                showMessage('Please select a valid image file (PNG, JPG, JPEG)', 'error');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const img = new Image();
+                img.onload = function() {
+                    sourceImage = img;
+                    showPreview(e.target.result);
+                    generateAllIcons();
+                    showMessage('✅ Custom app icon loaded successfully! All iOS sizes generated.', 'success');
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function showPreview(src) {
+            document.getElementById('previewArea').style.display = 'block';
+            document.getElementById('previewImg').src = src;
+        }
+
+        function showMessage(text, type) {
+            const messageArea = document.getElementById('messageArea');
+            messageArea.innerHTML = `<div class="${type}">${text}</div>`;
+        }
+
+        function generateAllIcons() {
+            const iconGrid = document.getElementById('iconGrid');
+            const downloadBtn = document.getElementById('downloadAllBtn');
+            
+            iconGrid.innerHTML = '';
+            generatedIcons = [];
+            
+            iconSizes.forEach(iconInfo => {
+                const canvas = document.createElement('canvas');
+                canvas.width = iconInfo.size;
+                canvas.height = iconInfo.size;
+                
+                // Draw the resized image with proper iOS corner radius
+                const ctx = canvas.getContext('2d');
+                
+                // Calculate corner radius (iOS standard is ~18% of icon size)
+                const cornerRadius = iconInfo.size * 0.18;
+                
+                // Create clipping path for rounded corners
+                ctx.beginPath();
+                roundedRect(ctx, 0, 0, iconInfo.size, iconInfo.size, cornerRadius);
+                ctx.clip();
+                
+                // Draw the source image, scaled to fit
+                ctx.drawImage(sourceImage, 0, 0, iconInfo.size, iconInfo.size);
+                
+                // Create display canvas for preview
+                const displayCanvas = document.createElement('canvas');
+                displayCanvas.width = iconInfo.display;
+                displayCanvas.height = iconInfo.display;
+                displayCanvas.style.width = iconInfo.display + 'px';
+                displayCanvas.style.height = iconInfo.display + 'px';
+                
+                const displayCtx = displayCanvas.getContext('2d');
+                displayCtx.drawImage(canvas, 0, 0, iconInfo.display, iconInfo.display);
+                
+                // Store the full-size canvas for download
+                generatedIcons.push({
+                    canvas: canvas,
+                    filename: iconInfo.filename
+                });
+                
+                // Create grid item
+                const item = document.createElement('div');
+                item.className = 'icon-item';
+                item.innerHTML = `
+                    <div><strong>${iconInfo.size}×${iconInfo.size}</strong></div>
+                    <div style="font-size: 12px; color: #666; margin-bottom: 5px;">${iconInfo.name}</div>
+                `;
+                item.appendChild(displayCanvas);
+                
+                const downloadBtn = document.createElement('button');
+                downloadBtn.className = 'download-btn';
+                downloadBtn.textContent = 'Download';
+                downloadBtn.onclick = () => downloadIcon(canvas, iconInfo.filename);
+                item.appendChild(downloadBtn);
+                
+                iconGrid.appendChild(item);
+            });
+            
+            iconGrid.style.display = 'grid';
+            downloadBtn.style.display = 'block';
+        }
+
+        function roundedRect(ctx, x, y, width, height, radius) {
+            ctx.beginPath();
+            ctx.moveTo(x + radius, y);
+            ctx.lineTo(x + width - radius, y);
+            ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+            ctx.lineTo(x + width, y + height - radius);
+            ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+            ctx.lineTo(x + radius, y + height);
+            ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+            ctx.lineTo(x, y + radius);
+            ctx.quadraticCurveTo(x, y, x + radius, y);
+            ctx.closePath();
+        }
+
+        function downloadIcon(canvas, filename) {
+            const link = document.createElement('a');
+            link.download = filename;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+
+        function downloadAllIcons() {
+            generatedIcons.forEach((icon, index) => {
+                setTimeout(() => {
+                    downloadIcon(icon.canvas, icon.filename);
+                }, index * 300); // Stagger downloads to avoid browser limits
+            });
+            
+            showMessage('📥 Downloading all iOS app icons... Check your Downloads folder!', 'success');
+        }
+
+        // Auto-load the uploaded icon if available
+        window.onload = function() {
+            // You can add code here to auto-load your specific icon file
+            showMessage('Ready to convert your custom app icon! Upload your image to get started.', 'success');
+        };
+    </script>
+</body>
+</html>

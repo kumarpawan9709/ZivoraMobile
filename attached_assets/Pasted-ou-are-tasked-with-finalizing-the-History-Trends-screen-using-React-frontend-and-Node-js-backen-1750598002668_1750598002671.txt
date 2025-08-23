@@ -1,0 +1,115 @@
+ou are tasked with finalizing the History & Trends screen using React (frontend) and Node.js (backend). This screen must strictly match the Figma design in both visual layout and dynamic data functionality.
+
+📌 PART 1: UI DESIGN INSTRUCTIONS (Match Figma Exactly)
+Do not use approximations. Ensure visual fidelity across:
+
+Tabs:
+
+Left tab = History
+
+Right tab = Trends
+
+Active tab must match the purple highlight color (#A259FF) with bold font.
+
+Tab should visually slide with no screen reload.
+
+Dropdown Filters:
+
+Filters: This Month, All Severities
+
+Style exactly as Figma: round corners, spacing, font-weight.
+
+Apply real-time filtering of data when options change.
+
+Headache History Cards (in History tab):
+
+Fields: Title (Severe Migraine), Date, Duration (4.5h), Trigger Tags (e.g., Stress, Weather Change), Context (e.g., @Work, Rainy), and Notes (if any).
+
+Severity level must be color-coded (Red/Orange/Yellow).
+
+Use proper icon for location and weather.
+
+Right rating stars must match actual rating dynamically (⭐ 2/10).
+
+Card UI and spacing should strictly follow Figma.
+
+Trends View:
+
+Summary boxes: Total Episodes, Avg Severity, Avg Duration (rounded).
+
+Episode Frequency Chart: Use line graph or bar chart as per design. Style with purple dots and labels.
+
+Health Correlation Graphs:
+
+Section titles: Heart Rate Variability, Sleep Quality, Stress Levels
+
+Must include colored lines, confidence %, and correlation % (e.g., 78% confidence, 65% negative correlation)
+
+Food Trigger Patterns:
+
+Colored bars for items like Dark Chocolate, Red Wine, Citrus Fruits with percentage from API.
+
+Button: Export Health Data
+
+Should be styled exactly as Figma (rounded, centered).
+
+🔄 PART 2: BACKEND API INTEGRATION (Node.js)
+Use dynamic APIs to populate all data:
+
+History View APIs:
+
+GET /api/user/history/:userId?month=06&severity=all
+
+Must return all past logs for selected month/severity.
+
+If no data, show Figma-style placeholder:
+"No migraine entries found for the selected period."
+
+Trends View APIs:
+
+GET /api/user/trends/summary/:userId
+
+Returns: totalEpisodes, avgSeverity, avgDuration
+
+GET /api/user/trends/frequency/:userId
+
+Returns: daily episode count for line graph
+
+GET /api/user/trends/correlations/:userId
+
+Returns: [ {label: Heart Rate Variability, correlation: -65%, confidence: 78%}, ... ]
+
+GET /api/user/trends/foods/:userId
+
+Returns: [ {food: "Dark Chocolate", value: 78%}, ... ]
+
+⚙️ PART 3: FUNCTIONAL BEHAVIOR
+Tabs (History, Trends) must switch without screen reload using local state.
+
+Filters must trigger API calls and update views in real-time.
+
+Charts and graphs must have tooltips and correct x-axis/y-axis labels.
+
+Implement loading spinners while fetching data.
+
+Handle API errors gracefully and show Error fetching data message.
+
+Make the screen fully mobile responsive, with cards stacking and charts adjusting to smaller widths.
+
+🛡️ PART 4: ISOLATION REQUIREMENTS
+Do not modify or break any other screen (Dashboard, Log, Insights, etc.).
+
+All work must be inside the dedicated HistoryTrendsScreen.tsx component.
+
+Only add necessary endpoints in routes.ts and controllers/history.ts, controllers/trends.ts.
+
+✅ ACCEPTANCE CRITERIA (Replit, confirm the following when done):
+ All sections on both History and Trends match Figma design exactly
+
+ Data is fully dynamic via authenticated user API
+
+ Mobile responsiveness is correct
+
+ No other screens were affected
+
+ Filters and navigation work smoothly without full reload

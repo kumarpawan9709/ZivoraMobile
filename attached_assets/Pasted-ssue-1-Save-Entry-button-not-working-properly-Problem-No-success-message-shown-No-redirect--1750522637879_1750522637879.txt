@@ -1,0 +1,65 @@
+ssue 1: ✅ "Save Entry" button not working properly
+❌ Problem:
+No success message shown
+
+No redirect or confirmation
+
+Data may not be posting to API or no feedback shown to user
+
+✅ Required Fix:
+Make sure the "Save Entry" button triggers a POST request to this endpoint:
+
+bash
+Copy
+Edit
+POST /api/logs/daily
+Payload must include all fields: headache, sleep, stress, food entry/barcode, hydration, activity, notes, image (if any), and userId
+
+On successful save, perform these two actions:
+
+✅ Show toast message or alert: "Entry saved successfully!"
+
+✅ Then, redirect user to Dashboard (route: /dashboard) OR show a success confirmation screen depending on Figma
+
+On error, show "Failed to save entry. Please try again." without redirect
+
+🔒 Strict Rule: Do not reload the page. Use proper navigation (React Router or framework router).
+
+🔴 Issue 2: ✅ Back button on top-left not working
+❌ Problem:
+Clicking the back button changes the URL, but screen doesn't update
+
+✅ Required Fix:
+Ensure the back button uses the app’s router method (e.g., navigate(-1) or navigate("/dashboard"))
+
+Use your React/Next/Router navigation system, not just window.location.href
+
+Confirm that:
+
+When user clicks back → it loads previous screen (usually Dashboard or previous tab)
+
+Screen updates immediately with no need for full page refresh
+
+🔒 Strict Rule: This back button must work exactly like native app navigation.
+
+🔁 Additional Instruction After "Save Entry"
+✅ After user taps Save Entry:
+
+Option 1: Redirect to /dashboard (Recommended – matches app flow)
+
+Option 2 (Optional): Show a success screen with a message and a CTA like “Go to Dashboard”
+
+Just ensure one of these flows is clearly implemented.
+
+🔍 Checklist for Replit (Final Verification)
+ Save Entry makes valid POST to /api/logs/daily with all required fields
+
+ Success message or toast shown
+
+ On success → redirected to Dashboard
+
+ Back button works with proper navigation logic
+
+ No other screens or layouts are changed
+
+ No hard reload used anywhere

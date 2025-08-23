@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick APK Creation - Zivora</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        h1 {
+            color: #4fc3f7;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .method {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #4fc3f7;
+        }
+        .quick {
+            border-left-color: #4caf50;
+        }
+        .professional {
+            border-left-color: #ff9800;
+        }
+        .steps {
+            counter-reset: step-counter;
+        }
+        .step {
+            counter-increment: step-counter;
+            margin: 15px 0;
+            padding-left: 40px;
+            position: relative;
+        }
+        .step::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: #4fc3f7;
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .url-box {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            word-break: break-all;
+            margin: 10px 0;
+        }
+        .download-btn {
+            background: #4fc3f7;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+            text-decoration: none;
+            display: inline-block;
+            transition: background 0.3s;
+        }
+        .download-btn:hover {
+            background: #29b6f6;
+        }
+        .warning {
+            background: rgba(255, 193, 7, 0.2);
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        .feature-list {
+            background: rgba(76, 175, 80, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Create Your Zivora APK File</h1>
+        
+        <div class="method quick">
+            <h2>🎯 Method 1: Quick Online APK (5 minutes)</h2>
+            
+            <div class="steps">
+                <div class="step">Go to <strong>Appsgeyser.com</strong> or <strong>Appmaker.xyz</strong></div>
+                <div class="step">Click "Create App" → "Website to App"</div>
+                <div class="step">Enter your Zivora URL:
+                    <div class="url-box">https://3ee4d6a9-e442-4a38-b9d4-69a8bb496f55-00-2spibzzix19bx.janeway.replit.dev</div>
+                </div>
+                <div class="step">App Name: <strong>Zivora</strong></div>
+                <div class="step">Upload icon (optional)</div>
+                <div class="step">Click "Create App" and download APK</div>
+            </div>
+            
+            <div class="feature-list">
+                <strong>✅ What You Get:</strong>
+                <ul>
+                    <li>Working APK file in 5 minutes</li>
+                    <li>All Zivora features included</li>
+                    <li>Easy installation on Android devices</li>
+                    <li>No technical setup required</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="method professional">
+            <h2>🛠️ Method 2: Professional APK with Android Studio</h2>
+            
+            <div class="steps">
+                <div class="step">Download Android project:
+                    <a href="/zivora-android-project-20250806.tar.gz" class="download-btn">Download Project (8.6MB)</a>
+                </div>
+                <div class="step">Install <strong>Android Studio</strong> from developer.android.com/studio</div>
+                <div class="step">Extract the downloaded file</div>
+                <div class="step">Open Android Studio → "Open existing project" → Select <code>android/</code> folder</div>
+                <div class="step">Wait for Gradle sync (automatic)</div>
+                <div class="step">Build → Build Bundle(s) / APK(s) → Build APK(s)</div>
+                <div class="step">Find APK at: <code>android/app/build/outputs/apk/debug/app-debug.apk</code></div>
+            </div>
+            
+            <div class="feature-list">
+                <strong>✅ Professional Features:</strong>
+                <ul>
+                    <li>Native Android performance</li>
+                    <li>Custom bundle ID: com.zivoramobile.zivora</li>
+                    <li>Optimized build (15-25MB)</li>
+                    <li>Play Store ready</li>
+                    <li>Full Capacitor integration</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="warning">
+            <strong>⚠️ Important:</strong> Replit cannot build APK files directly due to missing Android SDK. Use one of the methods above.
+        </div>
+
+        <div class="method">
+            <h2>📱 What Your APK Will Include</h2>
+            <ul>
+                <li>Complete migraine tracking system</li>
+                <li>Food logging with nutrition database</li>
+                <li>Data export (CSV/PDF)</li>
+                <li>User authentication</li>
+                <li>Interactive episode management</li>
+                <li>Insights and trend analysis</li>
+                <li>All latest UI improvements</li>
+            </ul>
+        </div>
+
+        <h2>🎯 Recommended: Try Method 1 First</h2>
+        <p>For fastest results, use the online APK builder with your Zivora web app URL. It creates a functional APK in just 5 minutes that you can immediately install and test on Android devices.</p>
+    </div>
+</body>
+</html>

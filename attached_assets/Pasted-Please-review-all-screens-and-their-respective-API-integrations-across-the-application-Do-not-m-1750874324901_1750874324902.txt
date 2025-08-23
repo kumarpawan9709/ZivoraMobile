@@ -1,0 +1,96 @@
+Please review all screens and their respective API integrations across the application.
+
+⚠️ Do not make any changes at this stage — this is purely for alignment.
+We want to confirm that we’re on the right track to building a fully functional app before proceeding with the final phase of enhancements.
+
+Kindly go through the following questions and answer them in detail:
+
+🔍 General Review – App Architecture & Data Flow
+✅ Are all major screens from the Figma design implemented in the app?
+
+If any screen is still pending (UI or logic), please list them clearly.
+
+✅ Is each implemented screen powered by dynamic API data from the database (not static)?
+
+If any screen still uses hardcoded or placeholder data, please specify which ones.
+
+✅ Are all API responses specific to the logged-in user (using userId or token)?
+
+If any API fetches generic or incorrect data, highlight that.
+
+✅ Is every form or log submission correctly routed through the backend and saving in the DB?
+
+Example: Daily Logs, Symptom Logs, Profile, Triggers, Medications, etc.
+
+🔍 Screen-Specific Functional Checks
+🟢 Daily Log
+Is all data (meal photo, barcode, symptom severity) saved and loaded based on date?
+
+Can users navigate to past dates and view their entries?
+
+Is the “Save Entry” button correctly validating input and saving to DB?
+
+🟣 Log Symptoms
+Are symptoms saved through API and reflected in DB?
+
+Are saved symptoms visible anywhere (e.g., History screen)?
+
+Is trigger + intensity + time data handled correctly?
+
+Are icons implemented for each trigger type?
+
+🔵 Dashboard
+Is the Risk Score section pulling accurate live data?
+
+Are the Quick Actions functional and correctly routed?
+
+Is the Notification bell showing unread badge and routing properly?
+
+🟠 History & Trends
+Is this screen showing actual user logs (Daily Log, Symptoms, Risk history)?
+
+Are 7, 30, 90 day filters fetching accurate, filtered DB data?
+
+🟤 Export Health Data
+Is the exported PDF dynamically generated with real DB data?
+
+Is the format consistent, readable, and scoped to user selections?
+
+Does CSV export work correctly as well?
+
+🔴 Insights & Predictions
+Are all insights (Confidence Score, Triggers, Sleep/Stress Pattern, Risk Predictions) dynamically fetched from APIs?
+
+Are drill-down buttons functional (e.g., “View Analysis”)?
+
+🟡 Medication Screen
+Is medication data being pulled from DB?
+
+Is the Add Reminder button functional?
+
+Is dosage tracking working or planned?
+
+⚙️ Settings
+Are toggles (Apple Health, Fitbit) currently functional or just visual?
+
+Are links to Privacy Policy / Terms of Service live?
+
+Is the user profile editable and stored in DB?
+
+🧪 Technical Checks
+Are all forms/components properly validated (with field-level errors)?
+
+Are successful submissions showing feedback (toast, redirect)?
+
+Are API errors handled gracefully (fallback messages, console logs)?
+
+Is routing consistent (Back button works, screen renders properly)?
+
+🚨 Final Assurance
+Do you feel the current app structure, DB schema, and API integration is clean, modular, and production-ready?
+
+Are there any hidden blockers or potential architecture issues you would recommend we address now?
+
+What is left to be done before you consider this app fully functional and ready for production testing?
+
+📝 Please answer all questions based on your current implementation so we can confirm alignment and finalize any missing features or changes in the correct order.

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zivora Android Source Code Download</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .header {
+            margin-bottom: 40px;
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #9c27b0;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            margin-bottom: 30px;
+        }
+        
+        .download-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .source-title {
+            font-size: 1.8rem;
+            color: #9c27b0;
+            margin-bottom: 20px;
+        }
+        
+        .file-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .info-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(156, 39, 176, 0.3);
+        }
+        
+        .info-card h4 {
+            color: #9c27b0;
+            margin-bottom: 10px;
+        }
+        
+        .download-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #9c27b0, #673ab7);
+            color: white;
+            text-decoration: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(156, 39, 176, 0.3);
+        }
+        
+        .download-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(156, 39, 176, 0.4);
+        }
+        
+        .build-steps {
+            text-align: left;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .build-steps h3 {
+            color: #9c27b0;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .step {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            border-left: 4px solid #9c27b0;
+        }
+        
+        .step-number {
+            color: #9c27b0;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        code {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: #ffeb3b;
+        }
+        
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .feature {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 3px solid #4caf50;
+        }
+        
+        .warning {
+            background: rgba(255, 193, 7, 0.1);
+            border: 1px solid rgba(255, 193, 7, 0.3);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .warning h4 {
+            color: #ffc107;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">ZIVORA</div>
+            <div class="subtitle">Complete Android Source Code Package</div>
+        </div>
+
+        <div class="download-section">
+            <h2 class="source-title">📦 Android Source Code Download</h2>
+            <p>Complete source code package with all Android project files, React frontend, Node.js backend, and build configurations.</p>
+            
+            <div class="file-info">
+                <div class="info-card">
+                    <h4>📊 Package Size</h4>
+                    <p>~8.6 MB compressed</p>
+                </div>
+                <div class="info-card">
+                    <h4>📋 Total Files</h4>
+                    <p>500+ source files</p>
+                </div>
+                <div class="info-card">
+                    <h4>🎯 Format</h4>
+                    <p>ZIP Archive</p>
+                </div>
+                <div class="info-card">
+                    <h4>📅 Updated</h4>
+                    <p>August 19, 2025</p>
+                </div>
+            </div>
+            
+            <a href="./zivora-android-source-latest.zip" class="download-button">
+                📱 Download Source Code
+            </a>
+        </div>
+
+        <div class="build-steps">
+            <h3>🛠️ Quick Build Guide</h3>
+            
+            <div class="step">
+                <div class="step-number">1.</div>
+                <strong>Extract & Install Dependencies</strong>
+                <br><code>unzip zivora-android-source-latest.zip && cd android-source-package && npm install</code>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">2.</div>
+                <strong>Build Web Assets</strong>
+                <br><code>npm run build</code>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">3.</div>
+                <strong>Sync with Android</strong>
+                <br><code>npx cap sync android</code>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">4.</div>
+                <strong>Open in Android Studio</strong>
+                <br><code>npx cap open android</code>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">5.</div>
+                <strong>Build APK</strong>
+                <br>In Android Studio: Build → Generate Signed Bundle/APK → APK
+            </div>
+        </div>
+
+        <div class="build-steps">
+            <h3>📱 Included Features</h3>
+            <div class="feature-list">
+                <div class="feature">✅ Migraine Episode Tracking</div>
+                <div class="feature">✅ Daily Health Logging</div>
+                <div class="feature">✅ Food & Nutrition Tracking</div>
+                <div class="feature">✅ Symptom Pattern Analysis</div>
+                <div class="feature">✅ Risk Assessment Scoring</div>
+                <div class="feature">✅ Data Export (CSV/PDF)</div>
+                <div class="feature">✅ User Authentication</div>
+                <div class="feature">✅ Educational Content</div>
+            </div>
+        </div>
+
+        <div class="warning">
+            <h4>⚠️ Build Requirements</h4>
+            <p>• Node.js 18+ with npm<br>
+            • Android Studio or Android SDK<br>
+            • Java Development Kit (JDK) 11+<br>
+            • Bundle ID: com.zivoramobile.zivora</p>
+        </div>
+
+        <div class="build-steps">
+            <h3>📂 Package Structure</h3>
+            <div style="font-family: monospace; text-align: left; background: rgba(0,0,0,0.3); padding: 20px; border-radius: 10px;">
+android-source-package/<br>
+├── android/          # Native Android project<br>
+├── client/           # React frontend<br>
+├── server/           # Node.js backend<br>
+├── shared/           # Shared TypeScript types<br>
+├── capacitor.config.ts # Mobile app config<br>
+├── package.json      # Dependencies<br>
+└── README.md         # Detailed instructions
+            </div>
+        </div>
+    </div>
+</body>
+</html>

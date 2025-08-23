@@ -1,0 +1,77 @@
+You are a full-stack React + Node.js app developer inside Replit. Build the **Settings screen** for the Zivora app using the latest React (frontend), Node.js (backend), and Firebase (as database).
+
+📱 This screen opens when the user clicks the settings icon on the dashboard screen.
+
+🛠️ Stack:
+- React (with functional components + hooks)
+- Node.js/Express for APIs
+- Firebase Realtime Database or Firestore (mock with JSON if needed)
+- React Router for navigation
+- Tailwind CSS or inline styles for design (dark mode only)
+
+🎨 Frontend Requirements:
+1. The screen should match the attached dark-mode screenshot **exactly** in design, color, and layout. Mobile-first and fully responsive.
+
+2. **Top Section:**
+   - Back icon (routes to `/dashboard`)
+   - Notification bell icon
+   - Settings (gear) icon with purple background
+
+3. **Profile Block:**
+   - User photo, name, email, and an "Edit Profile" button
+   - Data should come from: `/api/user/settings`
+   - Button should route to `/edit-profile`
+
+4. **Device Integration Cards:**
+   - Apple Health (Connected - green)
+   - Fitbit (Connect - purple button)
+   - Sleep Number (Connected - green)
+   - Oura Ring (Connect - purple button)
+   - Each card has an icon and short description
+   - Store device connection state in DB and update using API on toggle
+
+5. **Notifications Section:**
+   - 4 toggle switches:
+     - High-Risk Day Alerts (with Morning and Evening times shown)
+     - Daily Log Reminders (time shown)
+     - Educational Updates (toggle only)
+     - Weather Change Alerts (description + toggle)
+   - Use proper state for toggles and sync with backend
+   - Use nice animated toggle UI similar to screenshot
+
+6. **Account Section:**
+   - Buttons:
+     - Personal Information → route to `/account/personal-info`
+     - Privacy & Security → route to `/account/privacy`
+
+🌐 Backend API Requirements:
+Create these Node.js endpoints:
+- `GET /api/user/settings` → Return full user profile and preferences
+- `POST /api/user/device` → Body: `{ device: "fitbit", connected: true }`
+- `POST /api/user/notifications` → Update user notification preferences
+
+🗃️ Example user settings structure (Firebase or JSON):
+```json
+{
+  "userId": "123",
+  "name": "Sarah Johnson",
+  "email": "sarah.petheros@email.com",
+  "avatar": "https://example.com/profile.jpg",
+  "devices": {
+    "appleHealth": true,
+    "fitbit": false,
+    "sleepNumber": true,
+    "ouraRing": false
+  },
+  "notifications": {
+    "highRiskDay": true,
+    "dailyLog": true,
+    "educational": false,
+    "weather": true,
+    "times": {
+      "morning": "8:00 AM",
+      "evening": "6:00 PM",
+      "dailyLog": "9:00 PM"
+    }
+  }
+}

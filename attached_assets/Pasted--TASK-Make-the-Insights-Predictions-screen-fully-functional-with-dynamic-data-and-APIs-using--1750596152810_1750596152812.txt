@@ -1,0 +1,129 @@
+🚀 TASK: Make the “Insights & Predictions” screen fully functional with dynamic data and APIs using React (Frontend) and Node.js (Backend). 
+
+⚠️ STRICT INSTRUCTIONS:
+- Do NOT affect or modify any other screen or shared components.
+- This task is limited to the `/insights` screen only.
+- The layout, spacing, fonts, colors, and UI must exactly match the Figma design — no deviations allowed.
+- Do not break navigation or global structure.
+- All data must be dynamically fetched from the backend using APIs.
+- Do not hardcode any value unless it’s a placeholder for fallback.
+
+🎯 OBJECTIVE:
+Match the screen shown in Figma *exactly* and dynamically render each section using real API data pulled for the current user (`userId`).
+
+–––––––––––––––––––––––––––––––––––––––––––––––––––
+
+📍 SECTION-WISE FUNCTIONAL INSTRUCTIONS:
+
+✅ 1. Analysis Confidence Box:
+- API: `GET /api/user/insight/analysis-confidence/:userId`
+- Response:
+  {
+    "confidencePercent": 87,
+    "daysTracked": 30
+  }
+- Display: `87%` with text “Based on 30 days of data”
+- Font size and layout should match Figma
+
+✅ 2. Personalized Trigger Risks:
+- API: `GET /api/user/insight/triggers/:userId`
+- Sample response:
+[
+  { "trigger": "Dark Chocolate", "percentage": 78, "note": "Likely migraine trigger" },
+  { "trigger": "Red Wine", "percentage": 72, "note": "High correlation with episodes" },
+  { "trigger": "Screen Time > 6hrs", "percentage": 65, "note": "Activity-based trigger" },
+  { "trigger": "Processed Cheese", "percentage": 58, "note": "Moderate trigger risk" }
+]
+- Each card should have:
+  - Progress bar
+  - Percentage
+  - Color mapped as per risk: Red > Orange > Yellow > Blue
+  - Risk note
+- Match card radius, shadow, text size from Figma
+
+✅ 3. Stress & Sleep Patterns:
+- API: `GET /api/user/insight/stress-sleep/:userId`
+- Sample response:
+{
+  "stressLevel": "High",
+  "avgSleepHours": 6.2,
+  "insightNote": "Your migraine risk increases by 43% when you get less than 7 hours of sleep combined with high stress days."
+}
+- Left Card: Stress → icon and label
+- Right Card: Sleep Hours → numeric display
+- Bottom: Key Insight note
+
+✅ 4. Risk Predictions:
+- API: `GET /api/user/insight/risk-prediction/:userId`
+- Sample:
+[
+  {
+    "title": "Tomorrow",
+    "risk": "Medium",
+    "percentage": 45,
+    "note": "45% risk based on weather changes and sleep pattern"
+  },
+  {
+    "title": "This Weekend",
+    "risk": "High",
+    "percentage": 78,
+    "note": "78% risk - Social events often include trigger foods"
+  }
+]
+- Use badge style for "Medium Risk" and "High Risk"
+- Match layout spacing and horizontal bar style per Figma
+
+✅ 5. Personalized Recommendations:
+- API: `GET /api/user/insight/recommendations/:userId`
+- Sample:
+[
+  {
+    "title": "Avoid Dark Chocolate",
+    "note": "High trigger probability, consider alternatives"
+  },
+  {
+    "title": "Improve Sleep Schedule",
+    "note": "Aim for 7–8 hours, maintain consistent bedtime"
+  },
+  {
+    "title": "Limit Screen Time",
+    "note": "Take breaks every 2 hours, use blue light filters"
+  }
+]
+- Icons and text must match spacing from Figma
+- Use circle icon container just like in design
+
+✅ 6. "View Analysis" Button:
+- Must appear at the bottom
+- Button style: Purple gradient, white bold text, full width, rounded corners
+- OnClick → Navigate to: `/analysis-report`
+- Use React Router for navigation
+- This button must be isolated to this screen — do NOT reuse if affects others
+
+–––––––––––––––––––––––––––––––––––––––––––––––––––
+
+📦 Backend (Node.js):
+- Each API must return mock/sample data for now if no real user data exists
+- Use the `userId` passed in params or context
+- Store data in MongoDB/PostgreSQL if applicable for production
+- Maintain modular controller structure
+
+⚛️ Frontend (React):
+- Use local state or `useInsightsData()` custom hook
+- Do not use global state
+- Error handling: show fallback message or loading placeholders
+- Avoid hardcoded values, use API only
+
+📱 Responsive:
+- Must be fully responsive (mobile + desktop)
+- Spacing, stacking, and wrapping as per Figma
+
+✅ Before Finishing:
+- Double-check that no other screen or feature was affected
+- All fields and sections render dynamically and visually match the Figma design
+- Test navigation from button
+- No console errors
+
+–––––––––––––––––––––––––––––––––––––––––––––––––––
+
+Confirm completion and share screenshot of updated screen once done.

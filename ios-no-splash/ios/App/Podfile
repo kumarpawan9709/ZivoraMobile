@@ -1,0 +1,12 @@
+platform :ios, '14.0'
+use_frameworks!
+
+target 'App' do
+  pod 'Capacitor', '~> 6.0'
+  pod 'CapacitorCordova', '~> 6.0'
+  pod 'CapacitorApp', '~> 6.0'
+  pod 'CapacitorHaptics', '~> 6.0'
+  pod 'CapacitorKeyboard', '~> 6.0'
+  pod 'CapacitorStatusBar', '~> 6.0'
+  pod 'CapacitorSplashScreen', '~> 6.0'
+end

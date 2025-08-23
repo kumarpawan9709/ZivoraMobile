@@ -1,0 +1,77 @@
+Create the **second screen** of the Zivora app, titled:  
+**“Migraine is more than a headache.”**
+
+🔧 Tech Stack:
+- React (frontend)
+- Tailwind CSS for styling
+- React Router for navigation
+- Assets like illustrations should be stored locally or via placeholders that match the layout, size, and color tone
+- Component file: `MigraineIntro.jsx`
+
+---
+
+🎯 Functional Goals:
+- This is an onboarding/informational screen.
+- This screen appears after the splash screen.
+- It must match the mobile app design **exactly**:
+  - Font, colors, positioning, layout, image
+  - Responsive behavior (must look great on mobile and adjust on desktop)
+
+---
+
+🧠 Layout & Content Specification:
+
+1. **Background:** Full screen `#0C0C20`
+2. **Top Bar:**
+   - Small “Skip” text in the top-right corner
+   - Font-size: 14px, color: `#AAAAAA`, clickable (later connects to `/login`)
+   - Padding-top: `pt-4`, padding-right: `pr-4`
+   - Position: absolute top-right
+
+3. **Main Heading (centered top section):**
+   - Text: **"Migraine is more than"**  
+     Font: Inter, weight: bold, color: white, font-size: 22px  
+   - Subheading on next line: **"a headache."**  
+     Font: Inter, weight: bold, color: `#A25BFF`, font-size: 22px
+
+4. **Image (center)**:
+   - Use a colorful cartoon-style brain illustration surrounded by icons (eyes, ears, lightning bolts)
+   - Should match the style and colors seen in the design
+   - You may use the same image or close matching SVG from public sources like:
+     - https://undraw.co
+     - https://storyset.com
+     - Or placeholder + later replacement
+
+5. **Info Text Box (below image):**
+   - Rounded container with padding
+   - Background: slightly lighter black, e.g., `#1A1A2E`
+   - Text:
+     > "Migraine is a brain state that affects your senses, mood, and body — causing symptoms like dizziness, fatigue, nausea, and brain fog."
+   - Font: Inter, font-size: 16px, color: white
+   - Padding: `p-4`, margin-top: `mt-6`, rounded-lg
+
+6. **Bottom Tip (optional):**
+   - Icon: 💡
+   - Text: "Many people don’t even realize they’re having a migraine."
+   - Font: Inter, size: 14px, color: `#AAAAAA`
+   - Margin-top: `mt-4`, flex-center icon + text
+
+7. **Progress Indicator:**
+   - Dots showing this is step 1 of 3 in onboarding
+   - 3 small circles, first one filled (`bg-purple-500`), others `bg-gray-600`
+   - Flex row, gap, center horizontally below the info box
+
+8. **Next Button (bottom-right):**
+   - Round floating action button (FAB)
+   - Icon: ➜ or chevron-right
+   - Background: `#A25BFF`, icon in white
+   - Position: bottom-right, padding: `p-4`, rounded-full, shadow-md
+   - On click: Navigate to `/symptom-info`
+
+---
+
+📁 Folder & Routing Setup:
+- Component file: `src/components/MigraineIntro.jsx`
+- Update `App.jsx` to include the route:
+  ```jsx
+  <Route path="/intro" element={<MigraineIntro />} />

@@ -1,0 +1,74 @@
+🎯 TASK: Update the `/insights` page in Zivora App to exactly match the Figma design of the “Insights & Predictions” screen.
+
+---
+
+### 🔁 NAVIGATION
+- This screen should be accessible from the bottom nav or Dashboard insights link
+- Route: `/insights`
+
+---
+
+### ✅ STRUCTURE & FUNCTIONALITY
+
+1. 🔹 **Header**
+   - Title: “Insights & Predictions”
+   - Back button (← icon) → go to previous screen
+   - Gear icon for settings (optional, static)
+
+2. 🔹 **Analysis Confidence Section**
+   - Replace circular chart with a **flat card**
+   - Show:
+     - **87%** (large text)
+     - **“Based on 30 days of data”** (small caption)
+   - Use Figma layout and spacing
+
+3. 🔹 **Tab Switcher**
+   - “Insights” tab (highlighted by default)
+   - “Predictions” tab (inactive)
+   - Maintain full toggle switch bar styling
+
+4. 🔹 **Personalized Trigger Risks**
+   - Each item should be shown in a **rounded card** with:
+     - Icon: dot (color-coded based on severity)
+     - Label: Trigger name (e.g., “Dark Chocolate”)
+     - Subtext: Risk description (e.g., “Likely migraine trigger”)
+     - Right-aligned **percentage** (e.g., 78%)
+     - Colored **progress bar** below (color based on risk level):
+       - Red for high risk
+       - Orange for moderate
+       - Yellow for mild
+       - Blue or green for low
+   - Mock trigger examples:
+     ```json
+     [
+       { "name": "Dark Chocolate", "percent": 78, "description": "Likely migraine trigger", "color": "red" },
+       { "name": "Red Wine", "percent": 72, "description": "High correlation with episodes", "color": "orange" },
+       { "name": "Screen Time > 6hrs", "percent": 65, "description": "Activity-based trigger", "color": "yellow" },
+       { "name": "Processed Cheese", "percent": 58, "description": "Moderate trigger risk", "color": "blue" }
+     ]
+     ```
+
+5. 🔹 **Predictions Tab (Future)**
+   - Can remain non-functional for now or show “Coming Soon”
+
+---
+
+### 🧑‍🎨 UI STYLE GUIDE
+
+- Follow dark mode styling from Figma
+- Use soft shadows, rounded corners
+- Proper spacing between cards
+- Mobile-first layout
+
+---
+
+### ⚠️ FIX THESE
+| Issue | Fix |
+|-------|------|
+| Wrong categories shown | Replace with personalized triggers like in Figma |
+| Circular graph for 87% | Use flat box with % and caption |
+| No subtext/description under triggers | Add from mock data (see above) |
+| Progress bars not styled | Use thin, rounded bars matching color code |
+
+---
+

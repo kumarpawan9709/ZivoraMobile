@@ -1,0 +1,120 @@
+Follow a vertically scrollable mobile layout with the following sections:
+
+---
+
+## 🔹 1. Header
+
+- Title: **“Daily Log”**
+- Show today’s date dynamically (e.g., “June 20, 2025”)
+- Back arrow icon on top-left → navigates to Dashboard (`/dashboard`)
+
+---
+
+## 🔹 2. Food Intake Section
+
+### a) **Photo Capture**
+- Rounded box with:
+  - **Camera icon** (centered)
+  - Text: “Take photo of your meal”
+- On click:
+  - Open file selector to choose an image
+  - Save image to `food.photo` field in state
+
+### b) **Barcode Scanner**
+- Rounded input with icon on the left
+- Placeholder: `Scan product barcode`
+- ✅ **Fix Current Issue:**
+  - Make it an actual **input field**, not just a label
+  - On typing barcode, save value in `food.barcode`
+
+### c) **Manual Entry**
+- Multiline textarea with placeholder: `Describe what you ate or drank...`
+- Save input to `food.manual` field in state
+
+---
+
+## 🔹 3. Headache Logging
+
+### a) **Severity**
+- 4 buttons: None, Mild, Moderate, Severe
+- **One selectable at a time**
+- Selected button should have purple background & white text
+- Save selected value to `headache.severity`
+
+### b) **Duration**
+- 2 input fields: **Hours** and **Minutes**
+- Save both values to `headache.duration.hours` and `headache.duration.minutes`
+
+---
+
+## 🔹 4. Custom Triggers
+
+### a) **Emotions (Stress Events)**
+- Pills with predefined emotions (e.g., Angry, Stressed, Happy, etc.)
+- On click: toggle selected/unselected state
+- Allow user to **add custom emotions** via input field
+- Save all selected tags to `customTriggers.emotions`
+
+### b) **Specific Activities**
+- Predefined options: Travel, Exercise, Work, etc.
+- Same behavior as emotions — toggle selection
+- Custom “+ Add activity” option
+- Save to `customTriggers.activities`
+
+### c) **Medications**
+- Predefined: Ibuprofen, Aspirin, etc.
+- “+ Add medication…” to input manually
+- Save to `customTriggers.medications`
+
+---
+
+## 🔹 5. Save Entry Button
+
+- Label: **Save Entry**
+- Full-width, sticky at bottom
+- On click:
+  - Validate all fields (e.g., severity is selected, duration is numeric)
+  - Send a **POST request** to `/api/daily-log`
+  - Payload structure:
+
+```json
+{
+  "date": "2025-06-20",
+  "food": {
+    "photo": "base64_string_or_image_url",
+    "barcode": "123456789",
+    "manual": "Had a banana and oats"
+  },
+  "headache": {
+    "severity": "Moderate",
+    "duration": {
+      "hours": 1,
+      "minutes": 30
+    }
+  },
+  "customTriggers": {
+    "emotions": ["Stressed", "Happy"],
+    "activities": ["Exercise"],
+    "medications": ["Ibuprofen"]
+  }
+}
+Show a success message or redirect back to dashboard after save.
+
+🎨 UI/UX Notes
+Use Tailwind CSS or your global styles
+
+Dark mode theme (as per Figma)
+
+Rounded corners, soft shadows, modern minimal UI
+
+Mobile responsive (default target is mobile view)
+
+✅ Functionality Checklist
+Feature	Status	Required Fix/Implementation
+Photo capture	❌ Not wired	Use <input type="file"> + preview
+Barcode scanner input	⚠️ Label only	Replace with working <input> element
+Severity toggle buttons	✅ Present, ⚠️ no highlight	Add active state styling (purple)
+Duration input	✅ Present	Validate as numeric
+Custom triggers	✅ UI present	Add toggle state & custom entry support
+Save button	✅ Present	Implement data collection + POST
+

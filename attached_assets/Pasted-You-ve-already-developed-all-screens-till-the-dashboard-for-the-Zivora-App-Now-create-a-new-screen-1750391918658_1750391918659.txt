@@ -1,0 +1,71 @@
+You’ve already developed all screens till the dashboard for the Zivora App. Now, create a new screen called **Daily Log**.
+
+🧭 WHERE THIS SCREEN APPEARS:
+- This screen should open when the user clicks:
+  → “View Risk Factors” button on the **Dashboard** screen.
+
+🧱 COMPONENT NAME:
+`DailyLogScreen` (React Component)
+
+📆 PURPOSE:
+This screen is for logging daily activities that can affect migraine risk — food intake, headache severity, and other custom triggers.
+
+📸 SCREENSHOT REFERENCE:
+Refer to the attached screenshot of the Daily Log screen for layout and UI styling.
+
+---
+
+### 🧩 COMPONENT STRUCTURE & FUNCTIONALITY:
+
+1. **Header**
+   - Title: `Daily Log`
+   - Date: Display today’s date dynamically (e.g., "January 15, 2025")
+   - A back arrow icon to return to Dashboard
+
+2. **Section: Food Intake**
+   - “Take photo of your meal” → A button to open file/image upload
+   - “Scan product barcode” → Text input field for barcode string
+   - “Manual Entry” → Multi-line text area with placeholder "Describe what you ate or drank..."
+
+3. **Section: Headache Logging**
+   - Severity Buttons → 4 toggle buttons: None, Mild, Moderate, Severe
+   - Duration Input → Two input fields: Hours and Minutes
+
+4. **Section: Custom Triggers**
+   - Emotions → List of emotions (e.g., Angry, Stressed, Happy) with +Add option
+   - Specific Activities → List (e.g., Travel, Exercise) with +Add option
+   - Medications → Dropdown or searchable list (e.g., Ibuprofen) with +Add option
+
+5. **Save Entry Button**
+   - Button labeled `Save Entry`
+   - On click: Validate the fields and send a POST request to the backend
+
+---
+
+### 📦 BACKEND CONNECTION
+
+API: `POST /api/daily-log`
+
+Send the following JSON structure:
+
+```json
+{
+  "date": "2025-01-15",
+  "food": {
+    "photo": "image_url",
+    "barcode": "product_code",
+    "manual": "user_written_description"
+  },
+  "headache": {
+    "severity": "Severe",
+    "duration": {
+      "hours": 1,
+      "minutes": 20
+    }
+  },
+  "customTriggers": {
+    "emotions": ["Stressed"],
+    "activities": ["Exercise"],
+    "medications": ["Ibuprofen"]
+  }
+}

@@ -1,0 +1,136 @@
+Please go through the Figma reference design for the History & Trends screen and strictly follow the instructions below.
+
+🎯 Objective:
+Rebuild the History & Trends screen to exactly match the Figma design both visually and functionally using React (frontend) and Node.js (backend) APIs. Ensure no other screen or component is affected by these changes.
+
+✅ Screen Breakdown & Requirements:
+1. Tabs & Filters
+Tabs at the top:
+
+History tab (default selected)
+
+Trends tab (switches view)
+
+Two filters:
+
+Time Period (This Month, Last 3 Months, etc.)
+
+Severity (All Severities, Mild, Moderate, Severe)
+
+Implement as reusable filter components
+
+Pull filtered data via API:
+
+GET /api/user/history/:userId?period=30d&severity=all
+
+2. History Section (Left Tab)
+🧠 Headache Log Cards (Dynamic List)
+Each entry should include:
+
+Severity level with color dot (e.g., red = severe)
+
+Date & duration
+
+Triggers (tags like Stress, Lack of Sleep, etc.)
+
+Location & weather condition (icons shown in Figma)
+
+Rating out of 10
+
+Additional notes text
+
+Data API:
+
+GET /api/user/history/:userId
+
+Accept filters via query params (period, severity)
+
+3. Trends Section (Right Tab)
+📊 Episode Summary Stats (Top 3 Boxes)
+Total Episodes
+
+Average Severity
+
+Average Duration
+API: GET /api/user/trends/summary/:userId?period=30d
+
+📈 Episode Frequency Trend (Line Chart)
+Use recharts or any React chart library to display graph
+
+Plot migraines/day across the selected time period
+API: GET /api/user/trends/frequency/:userId?period=30d
+
+🕒 Recent Episodes Cards
+Styled compact cards with:
+
+Date
+
+Duration
+
+Triggers (tags)
+
+Severity dots
+API: GET /api/user/trends/recent/:userId?limit=3
+
+📉 Health Correlations (Graphs)
+Heart Rate Variability
+
+Sleep Quality
+
+Stress Levels
+
+Each graph should show correlation and confidence %
+API:
+
+GET /api/user/trends/correlation/heart-rate/:userId
+
+GET /api/user/trends/correlation/sleep/:userId
+
+GET /api/user/trends/correlation/stress/:userId
+
+🍽 Food Trigger Patterns
+Horizontal bar chart showing top food triggers with %
+API: GET /api/user/trends/food-triggers/:userId
+
+4. 📤 Export Health Data Button
+Clicking should trigger download of PDF/CSV
+API: GET /api/user/trends/export/:userId
+(Returns downloadable file)
+
+⚙️ Functional Requirements
+Data must be dynamically pulled based on:
+
+Selected time range
+
+Selected severity filter
+
+Handle all API responses with proper loading & fallback states
+
+Use JWT to get user ID and send with all requests
+
+Ensure pagination or scroll works properly if list is long
+
+Mobile responsive: charts and boxes should stack or scroll neatly
+
+🚫 Important Constraints
+Do not make changes to other components or screens like:
+
+Dashboard
+
+Daily Log
+
+Insights
+
+Work only inside the HistoryScreen.tsx and related trend components
+
+Use modular, reusable component structure
+
+Once completed, confirm the following:
+✅ Figma design matched exactly
+✅ All API data integrated correctly
+✅ Filters are working
+✅ No hardcoded data remains
+✅ Responsive layout maintained
+✅ Export working
+
+Please confirm once it's complete or if any clarification is needed before implementation.

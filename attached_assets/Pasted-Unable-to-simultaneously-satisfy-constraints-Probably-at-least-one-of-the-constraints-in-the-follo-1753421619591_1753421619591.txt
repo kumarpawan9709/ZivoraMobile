@@ -1,0 +1,31 @@
+Unable to simultaneously satisfy constraints.
+	Probably at least one of the constraints in the following list is one you don't want. 
+	Try this: 
+		(1) look at each constraint and try to figure out which you don't expect; 
+		(2) find the code that added the unwanted constraint or constraints and fix it. 
+	(Note: If you're seeing NSAutoresizingMaskLayoutConstraints that you don't understand, refer to the documentation for the UIView property translatesAutoresizingMaskIntoConstraints) 
+(
+    "<NSAutoresizingMaskLayoutConstraint:0x600002149180 h=--& v=--& _UIToolbarContentView:0x102a0aca0.height == 0   (active)>",
+    "<NSLayoutConstraint:0x60000213a120 V:|-(0)-[_UIButtonBarStackView:0x102a0b5d0]   (active, names: '|':_UIToolbarContentView:0x102a0aca0 )>",
+    "<NSLayoutConstraint:0x600002139ea0 _UIButtonBarStackView:0x102a0b5d0.bottom == _UIToolbarContentView:0x102a0aca0.bottom   (active)>",
+    "<NSLayoutConstraint:0x60000214d540 UIButtonLabel:0x102873590.centerY == _UIModernBarButton:0x10282e550.centerY + 0.5   (active)>",
+    "<NSLayoutConstraint:0x600002148230 'TB_Baseline_Baseline' _UIModernBarButton:0x10282e550.lastBaseline == UILayoutGuide:0x600003b2a5a0'UIViewLayoutMarginsGuide'.bottom   (active)>",
+    "<NSLayoutConstraint:0x600002148280 'TB_Top_Top' V:|-(>=0)-[_UIModernBarButton:0x10282e550]   (active, names: '|':_UIButtonBarButton:0x1029333d0 )>",
+    "<NSLayoutConstraint:0x6000021483c0 'UIButtonBar.maximumAlignmentSize' _UIButtonBarButton:0x1029333d0.height == UILayoutGuide:0x600003b00fc0'UIViewLayoutMarginsGuide'.height   (active)>",
+    "<NSLayoutConstraint:0x6000021399a0 'UIView-bottomMargin-guide-constraint' V:[UILayoutGuide:0x600003b00fc0'UIViewLayoutMarginsGuide']-(0)-|   (active, names: '|':_UIButtonBarStackView:0x102a0b5d0 )>",
+    "<NSLayoutConstraint:0x600002148190 'UIView-bottomMargin-guide-constraint' V:[UILayoutGuide:0x600003b2a5a0'UIViewLayoutMarginsGuide']-(16)-|   (active, names: '|':_UIButtonBarButton:0x1029333d0 )>",
+    "<NSLayoutConstraint:0x600002139e50 'UIView-topMargin-guide-constraint' V:|-(0)-[UILayoutGuide:0x600003b00fc0'UIViewLayoutMarginsGuide']   (active, names: '|':_UIButtonBarStackView:0x102a0b5d0 )>"
+)
+
+Will attempt to recover by breaking constraint 
+<NSLayoutConstraint:0x60000214d540 UIButtonLabel:0x102873590.centerY == _UIModernBarButton:0x10282e550.centerY + 0.5   (active)>
+
+Make a symbolic breakpoint at UIViewAlertForUnsatisfiableConstraints to catch this in the debugger.
+The methods in the UIConstraintBasedLayoutDebugging category on UIView listed in <UIKitCore/UIView.h> may also be helpful.
+-[RTIInputSystemClient remoteTextInputSessionWithID:textSuggestionsChanged:]  Can only set suggestions for an active session. sessionID = 0CD20020-6E53-4712-8151-E089520043D6
+...requesting item failed with error: Error Domain=PBErrorDomain Code=13 "Operation not authorized." UserInfo={NSLocalizedDescription=Operation not authorized.}
+...requesting item failed with error: Error Domain=PBErrorDomain Code=13 "Operation not authorized." UserInfo={NSLocalizedDescription=Operation not authorized.}
+...requesting item failed with error: Error Domain=PBErrorDomain Code=13 "Operation not authorized." UserInfo={NSLocalizedDescription=Operation not authorized.}
+...requesting item failed with error: Error Domain=PBErrorDomain Code=13 "Operation not authorized." UserInfo={NSLocalizedDescription=Operation not authorized.}
+...requesting item failed with error: Error Domain=PBErrorDomain Code=13 "Operation not authorized." UserInfo={NSLocalizedDescription=Operation not authorized.}
+...requesting item failed with error: Error Domain=PBErrorDomain Code=13 "Operation not authorized." UserInfo={NSLocalizedDescription=Operation not authorized.}

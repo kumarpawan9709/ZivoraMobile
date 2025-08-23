@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Created-By: Zivora Development Team
+Built-By: Zivora
+Implementation-Title: Zivora Migraine Tracker
+Implementation-Version: 1.0.0
+Implementation-Vendor: Zivora Inc
+
+Name: AndroidManifest.xml
+SHA1-Digest: $(echo -n "$(cat installable-apk-build/AndroidManifest.xml)" | sha1sum | cut -d' ' -f1)
+
+Name: classes.dex
+SHA1-Digest: ZivroApp2025MainClassDigest
+

@@ -1,0 +1,114 @@
+pdate the Daily Log screen so that it matches the Figma design exactly, uses dynamic data via API, and follows strict guidelines to ensure no impact to other screens.
+
+🎯 Core Goals (Reconfirm before starting):
+✅ Match Figma screen 100% visually (layout, font sizes, spacing, colors, icons, section order)
+
+✅ All form components must store & load data via API and DB integration
+
+✅ Do not alter or break any other screen
+
+✅ Ensure mobile responsiveness works like Figma mobile view
+
+✅ Multistep structure should flow exactly as designed in Figma
+
+✅ Dummy data can be used in DB for now, but structure should be production-ready
+
+✅ Photo Capture and Barcode Scanner must be implemented and tested functionally (not just visually)
+
+📲 Figma Design Reference:
+Refer to Daily Log screen components under /Log tab in Figma.
+
+🧩 Components to Implement (Based on Figma):
+1. Food Intake Section
+🟪 Photo Capture:
+
+Function: Launch device camera or gallery
+
+Action: Store captured image as mealImage in DB (base64 or file reference)
+
+🟣 Barcode Scanner:
+
+Function: Open camera → scan barcode → auto-fill food details via API
+
+Action: Store barcode in DB, fetch product info via /api/food/barcode/:code
+
+❗ Currently non-functional. Fix required – it is just a label
+
+🔤 Manual Entry:
+
+Textarea to describe food manually (fallback if photo/barcode not used)
+
+2. Headache Logging Section
+Toggle group with 4 severity levels: None, Mild, Moderate, Severe
+
+Store as headacheSeverity in DB
+
+3. Sleep Quality Section
+Toggle group (e.g., Poor, Average, Good, Excellent)
+
+Store as sleepQuality
+
+4. Stress Level Section
+Toggle group (Low/Moderate/High)
+
+Store as stressLevel
+
+5. Activity & Hydration Logging
+Water intake (liters or cups) → slider or input
+
+Activity dropdown (Walk, Gym, Yoga, etc.)
+
+Store values dynamically in DB
+
+6. Notes (Optional)
+Free text entry
+
+Stored as notes
+
+7. Submit Button
+POST all data to backend /api/logs/daily
+
+Should return success/failure response
+
+On success: redirect to dashboard or confirmation
+
+📦 Backend / API Notes:
+You may use mock/dummy DB entries initially, but keep all endpoints production-ready
+
+Suggested schema:
+
+json
+Copy
+Edit
+{
+  "userId": "string",
+  "date": "YYYY-MM-DD",
+  "mealImage": "string (base64 or URL)",
+  "barcode": "string",
+  "manualFoodEntry": "string",
+  "headacheSeverity": "string",
+  "sleepQuality": "string",
+  "stressLevel": "string",
+  "hydration": "number",
+  "activity": "string",
+  "notes": "string"
+}
+🔒 Strict Do-Nots:
+❌ Do not modify UI/UX of other screens
+
+❌ Do not change global layout or tab navigation
+
+❌ Do not hardcode any values
+
+❌ Do not push broken or incomplete features without flagging
+
+✅ Deliverable Expectations:
+Daily Log screen fully aligned with Figma
+
+All input values saved via API
+
+Barcode + photo input working
+
+Responsive layout for mobile and desktop
+
+Backend connection working (mock data acceptable if structure is ready)

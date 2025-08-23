@@ -1,0 +1,54 @@
+Replit Agent, you are an expert Android + web build engineer.  
+I have a React front-end and a Node backend in this Replit project.  
+I need an installable Android APK that preserves all current functionality with zero changes, and a stable download link I can open on my phone to fetch the latest APK.  
+
+Follow these steps exactly:
+
+A) PREP
+1. Detect my front-end build directory (`build` for CRA, `dist` for Vite, `.next/out` for Next.js). Call this {WEB_DIR}.
+2. Confirm my Node backend framework (likely Express) so we can add a safe new route later without affecting existing endpoints.
+
+B) ADD CAPACITOR
+1. Install and initialize Capacitor:
+   - `npm install @capacitor/core @capacitor/cli --save-dev`
+   - `npx cap init "ReplitApp" "com.replit.app" --web-dir={WEB_DIR}`
+2. Ensure my `package.json` has a build script that outputs to {WEB_DIR}.
+3. Run `npm run build`.
+4. Run `npx cap add android` to scaffold the Android project (note: the APK build will happen in GitHub Actions, not inside Replit).
+
+C) GITHUB ACTIONS WORKFLOW
+1. Initialize git if missing and push the project to a new GitHub repo (e.g., `replit-apk-wrap`).
+2. Create `.github/workflows/android-apk.yml` with:
+   - Trigger: `workflow_dispatch` and `release` (published).
+   - Runner: `ubuntu-latest`.
+   - Steps:
+     * Set up Node 20 and Java 17.
+     * Run: `npm ci`, `npm run build`, `npx cap sync android`.
+     * Build with: `cd android && ./gradlew assembleDebug`.
+     * Upload APK as artifact and attach to GitHub Release as `app-latest.apk`.
+   - If secrets (`ANDROID_KEYSTORE_BASE64`, `ANDROID_KEY_ALIAS`, `ANDROID_STORE_PASSWORD`, `ANDROID_KEY_PASSWORD`) exist, build a release-signed APK; otherwise, build a debug APK.
+3. Output instructions for adding signing secrets later.
+
+D) NODE BACKEND: APK DOWNLOAD ROUTE
+1. Add a GET route `/download/apk`:
+   - If `GITHUB_REPO` env var is set, call GitHub API to fetch the latest release asset `app-latest.apk` and 302-redirect to its `browser_download_url`.
+   - Fallback: serve `/public/app-latest.apk` with headers:
+     * `Content-Type: application/vnd.android.package-archive`
+     * `Content-Disposition: attachment; filename="app-latest.apk"`
+
+E) DEPLOY + FINAL URL
+1. Ensure my Replit deployment exposes `/download/apk`.
+2. Provide the final working link, e.g.:
+   `https://<myreplit>.replit.app/download/apk`
+
+F) README
+Add a README section with:
+- How to trigger APK builds (GitHub release or workflow_dispatch).
+- Where to download (the `/download/apk` link).
+- How to add signing secrets for production builds.
+- Note that large files (20–50 MB APKs) are supported, but GitHub Release hosting is more reliable than storing APKs inside Replit.
+
+Deliverables:
+1. Show me the `.github/workflows/android-apk.yml` file content.
+2. Show me the backend route code for `/download/apk`.
+3. Provide the final stable APK download URL.

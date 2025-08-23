@@ -1,0 +1,90 @@
+Build a Flutter app that replicates the ZIVORA splash screen and onboarding screen with identical look and functionality.
+
+📱 SCREEN 1: Splash Screen (Initial)
+Design Details:
+
+Background: Pure black (Colors.black)
+
+Centered icon: Brain/head icon (use Flutter's Icons.psychology as a placeholder)
+
+Text:
+
+ZIVORA (bold, all caps, color: Colors.purpleAccent, font size: 32)
+
+"Welcome to Zivora mobile app" below in smaller font and Colors.white54
+
+Transition: Auto-navigate to next screen after 2 seconds using Future.delayed.
+
+📱 SCREEN 2: Onboarding Screen 1
+Design Details:
+
+Background: Black
+
+Header text:
+
+"Migraine is more than a" (white)
+
+"headache." (purple/violet)
+Use RichText or different TextSpan styles.
+
+🧠 Image:
+
+Use the brain illustration from the screenshot.
+
+You can extract the brain image directly from the uploaded screenshot or use any asset file named assets/brain.png.
+
+Description Box:
+
+Add a rounded dark box with the text:
+"Migraine is a brain state that affects your senses, mood, and body — causing symptoms like dizziness, fatigue, nausea, and brain fog."
+
+Bold colored words: brain state (purple) and others in white.
+
+Small info text below:
+"Many people don’t even realize they’re having a migraine."
+
+Dots as progress indicator (2 dots, 1 filled)
+
+A circular Next button on the bottom right:
+
+Icon: arrow (Icons.arrow_forward), purple background.
+
+Top-right: Skip button (TextButton, white)
+
+📂 FOLDER STRUCTURE (Flutter):
+bash
+Copy
+Edit
+/lib
+  ├── main.dart
+  ├── splash_screen.dart
+  ├── onboarding_screen.dart
+/assets
+  └── brain.png  # use cropped image from the screenshot or any placeholder
+/pubspec.yaml
+📌 FUNCTIONALITY:
+App starts at SplashScreen and navigates to OnboardingScreen after 2 seconds.
+
+Tapping Next will eventually go to the next onboarding screen (optional now).
+
+Tapping Skip should be wired to navigate to a dummy Home page (you can use print('Skip') for now).
+
+Ensure all fonts, spacing, and alignment match the screenshot.
+
+📎 NOTE:
+If possible, extract the brain image from the screenshot itself and use it.
+
+Use GoogleFonts package for smooth font matching (optional).
+
+Make the design pixel-perfect as shown.
+
+✅ OUTPUT:
+A working Flutter app that shows:
+
+Splash screen with Zivora branding
+
+Onboarding screen with brain illustration and styled description
+
+Exact navigation and UI feel as per screenshot
+
+Let me know once this is working, and I’ll help build the next screen.

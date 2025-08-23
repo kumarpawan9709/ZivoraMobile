@@ -1,0 +1,148 @@
+🎯 GOAL:
+Make the **Dashboard screen** fully functional and pixel-perfect according to Figma. All data must be pulled dynamically via API from the backend/DB, with **zero design changes**, and **no changes to other screens**.
+
+---
+
+📍 ROUTE: `/dashboard`
+🎨 DESIGN REFERENCE:
+https://www.figma.com/design/Ibyuu3J95W9CMeXqzq46RQ/Zivora-App?node-id=108-4108
+
+---
+
+✅ INSTRUCTION FOR UI IMPLEMENTATION:
+
+🚫 DO NOT CHANGE:
+- Layout, spacing, padding, shadows
+- Colors, fonts, button shapes or sizes
+- Icons or their placement
+- Text content
+- Navigation bar or bottom tabs
+
+✅ Ensure:
+- All data is **dynamically loaded via API**
+- Only this screen is updated
+
+---
+
+🧱 COMPONENTS & FUNCTIONALITY DETAILS
+
+---
+
+### 1. 👋 User Greeting Section
+- Display: “Good morning, [User Name]” with date.
+- Profile picture should be dynamic.
+- Fetch data from `/api/user/profile/:userId`
+  - `{ "name": "Sarah", "profile_image": "URL" }`
+
+---
+
+### 2. 📊 Migraine Risk Score (Card)
+- Circular progress indicator (Figma styled) showing score like `32`
+- Risk label: “Low Risk”, “Moderate Risk”, or “High Risk” (based on score range)
+- Status: e.g., “Your brain is in a stable state today.”
+- Button: `View Risk Factors` → navigates to `/risk-factors`
+
+✅ API: `/api/user/risk-score/:userId`
+```json
+{
+  "score": 32,
+  "level": "Low",
+  "message": "Your brain is in a stable state today. Light triggers are manageable."
+}
+
+
+3. ⚡ Quick Actions
+Two tappable buttons:
+
+Log Symptoms → navigate to /log/symptoms
+
+Add Food → navigate to /log/food
+
+✅ These are navigation-only buttons; no need for DB update here.
+
+4. 🕒 Recent Activity Section (Timeline Cards)
+Cards for:
+
+Logged food
+
+Synced sleep
+
+Logged symptoms
+
+✅ Fetch from: /api/user/recent-activity/:userId
+
+Response:
+
+json
+Copy
+Edit
+[
+  { "type": "Food", "description": "Logged lunch", "time": "12:30", "icon": "🍗" },
+  { "type": "Sleep", "description": "Sleep data synced", "time": "6:45", "icon": "🛌" },
+  { "type": "Symptoms", "description": "Mild headache", "time": "14:15", "icon": "😣" }
+]
+✅ Display exactly 3 most recent items. Use matching icons.
+
+5. 📂 My Space Navigation Menu (Cards List)
+Tappable items:
+
+Daily Log → /log
+
+Insights → /insights
+
+History & Trends → /history
+
+Medications → /medications
+
+Settings → /settings
+
+✔ These are purely navigational buttons.
+
+📦 BACKEND / DATABASE REQUIREMENTS
+
+Create or use these endpoints:
+
+GET /api/user/profile/:userId
+
+GET /api/user/risk-score/:userId
+
+GET /api/user/recent-activity/:userId
+
+✅ Optional table example:
+Table: user_activity_log
+
+id, user_id, type, description, timestamp, icon
+
+🔒 FUNCTIONALITY VALIDATION
+
+Test with testuser
+
+Change risk score manually in DB and see it reflected
+
+Ensure activity list updates in real-time
+
+Redirects work for all buttons
+
+Profile image shows correctly (use placeholder if null)
+
+📌 SCOPE CLARITY
+
+🚫 DO NOT:
+
+Edit or affect bottom navigation
+
+Break other screens
+
+Change text alignment or fonts
+
+Modify dashboard card spacing
+
+Implement animation or transitions unless defined in Figma
+
+🧪 FINAL CHECKLIST BEFORE SUBMITTING
+✅ Layout exactly matches Figma
+✅ All data pulled dynamically
+✅ Working navigation
+✅ Responsive on different screen sizes
+✅ No other screen changed
+✅ Works with real or dummy data from DB

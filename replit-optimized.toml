@@ -1,0 +1,61 @@
+# Optimized Replit configuration for instant startup
+modules = ["nodejs-20", "web", "postgresql-16"]
+run = "node instant-dev.js"
+hidden = [".config", ".git", "node_modules", "dist", "*.log"]
+
+[nix]
+channel = "stable-24_05"
+# Reduced package list - only essential tools
+packages = ["swiftPackages.xcbuild", "rubyPackages_3_3.cocoapods"]
+
+[deployment]
+deploymentTarget = "gce"
+# Optimized build process
+build = ["npm ci --production=false", "npm run build"]
+run = ["npm run start:fast"]
+# Environment variables for production optimization
+env = { NODE_ENV = "production", NODE_OPTIONS = "--max-old-space-size=512" }
+
+[[ports]]
+localPort = 5000
+externalPort = 80
+
+[workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Fast Start"
+
+[[workflows.workflow]]
+name = "Fast Start" 
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "node instant-dev.js"
+waitForPort = 5000
+
+# Performance monitoring workflow
+[[workflows.workflow]]
+name = "Production Build"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run build && npm run start:fast"
+waitForPort = 5000
+
+# Server warming workflow for Always On behavior
+[[workflows.workflow]]
+name = "Keep Warm"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec" 
+args = "npm run warm"

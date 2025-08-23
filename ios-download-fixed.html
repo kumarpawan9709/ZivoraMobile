@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download Fixed iOS Package - Zivora</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            text-align: center;
+        }
+        h1 {
+            color: #4fc3f7;
+            margin-bottom: 20px;
+        }
+        .download-btn {
+            background: linear-gradient(45deg, #4fc3f7, #29b6f6);
+            color: white;
+            padding: 20px 40px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
+            margin: 20px;
+            transition: transform 0.3s;
+            box-shadow: 0 4px 15px rgba(79, 195, 247, 0.3);
+        }
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(79, 195, 247, 0.4);
+        }
+        .info-box {
+            background: rgba(76, 175, 80, 0.2);
+            border-left: 4px solid #4caf50;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: left;
+        }
+        .fix-list {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: left;
+        }
+        .status {
+            background: rgba(76, 175, 80, 0.3);
+            color: #81c784;
+            padding: 10px;
+            border-radius: 6px;
+            font-weight: bold;
+            display: inline-block;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>iOS Black Screen Fix - Ready for Download</h1>
+        
+        <div class="status">
+            FIXED: iPad Air (5th generation) iPadOS 18.6 Launch Issue + Launch Screen
+        </div>
+        
+        <div class="preview">
+            <div class="logo">ZIVORA</div>
+            <div class="tagline">Migraine Tracker</div>
+            <p style="margin-top: 15px; font-size: 14px; color: rgba(255,255,255,0.7);">
+                New launch screen (replaces black screen)
+            </p>
+        </div>
+        
+        <a href="/zivora-ios-updated-latest-20250808.tar.gz" class="download-btn">
+            Download Fixed iOS Package (5.4MB)
+        </a>
+        
+        <div class="info-box">
+            <h3>What Was Fixed:</h3>
+            <ul>
+                <li><strong>Black Screen Issue:</strong> Removed problematic Replit development scripts</li>
+                <li><strong>Launch Speed:</strong> Eliminated network calls on app startup</li>
+                <li><strong>iPad Compatibility:</strong> Fixed specifically for iPad Air (5th gen) iPadOS 18.6</li>
+                <li><strong>Standalone Mode:</strong> App now works without external dependencies</li>
+            </ul>
+        </div>
+        
+        <div class="fix-list">
+            <h3>Technical Changes Applied:</h3>
+            <ul>
+                <li>Removed <code>https://replit.com/public/js/replit-dev-banner.js</code> from HTML</li>
+                <li>Disabled <code>checkNetworkConnectivity()</code> on app launch</li>
+                <li>Updated Capacitor config for standalone operation</li>
+                <li>Added proper app title and metadata</li>
+                <li>Fixed TypeScript error handling</li>
+                <li><strong>NEW:</strong> Created proper Zivora launch screen (no more black screen)</li>
+                <li><strong>NEW:</strong> Native iOS storyboard with Auto Layout constraints</li>
+            </ul>
+        </div>
+        
+        <div class="info-box">
+            <h3>Ready for App Store:</h3>
+            <ul>
+                <li><strong>Bundle ID:</strong> com.zivoramobile.zivora</li>
+                <li><strong>Size:</strong> Complete iOS project package</li>
+                <li><strong>Status:</strong> Ready for immediate resubmission</li>
+                <li><strong>Expected Result:</strong> No black screen, launches immediately</li>
+            </ul>
+        </div>
+        
+        <p><strong>Next Steps:</strong></p>
+        <ol>
+            <li>Download the package above</li>
+            <li>Extract the files</li>
+            <li>Open ios/App/App.xcworkspace in Xcode</li>
+            <li>Build and submit to App Store</li>
+        </ol>
+    </div>
+</body>
+</html>

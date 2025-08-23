@@ -1,0 +1,140 @@
+Your current Replit prompt was likely too flexible in describing UI requirements. Even though functionality was explained well, it allowed room for layout restructuring, which they took.
+
+✅ STRICT VERSION OF DASHBOARD PROMPT
+Here is a revised and locked-down prompt to give Replit so that:
+
+They cannot alter the layout, size, spacing, padding, alignment.
+
+UI structure must exactly match Figma.
+
+Only the data layer is allowed to change.
+
+🧩 STRICT DASHBOARD IMPLEMENTATION PROMPT FOR REPLIT
+yaml
+Copy
+Edit
+🚫 DO NOT CHANGE THE VISUAL DESIGN FROM FIGMA.
+
+This is a strict pixel-perfect task to make the **Dashboard** screen functional while keeping the design **exactly as it is in Figma**.
+
+🎯 PURPOSE:
+Make this screen functional using dynamic data from backend API and DB, but DO NOT edit layout, padding, icons, positions, fonts, or spacing.
+
+📍 SCREEN: `/dashboard`
+
+📐 Figma: https://www.figma.com/design/Ibyuu3J95W9CMeXqzq46RQ/Zivora-App?node-id=108-4108
+
+---
+
+✅ STRICT RULES:
+
+1. DO NOT modify layout or move any components.
+2. DO NOT stretch or resize elements.
+3. DO NOT change font sizes, alignments, padding, colors, spacing.
+4. DO NOT switch icon style or button shape.
+5. DO NOT change card sizes, radii, or vertical stacking.
+6. DO NOT apply custom logic to combine or simplify components.
+7. DO NOT make design decisions — follow **Figma exactly**.
+8. DO NOT affect other screens.
+
+---
+
+✅ YOUR JOB: DATA INTEGRATION ONLY
+
+Make each component dynamic with data coming from API or DB. Below are the mappings.
+
+---
+
+🔶 SECTION 1: USER GREETING HEADER
+- Show user's first name and current date.
+- Profile photo should be displayed circular (if available).
+- Data from API: `GET /api/user/profile/:userId`
+```json
+{ "name": "Sarah", "profile_image": "https://..." }
+🔶 SECTION 2: MIGRAINE RISK SCORE CARD
+
+Do NOT change design of circular progress ring.
+
+Do NOT realign it left — it must stay centered and styled like Figma.
+
+Dynamic values:
+
+Score (0–100)
+
+Label (Low, Medium, High)
+
+Status message
+
+Action button → Navigates to /risk-factors
+
+API: GET /api/user/risk-score/:userId
+
+json
+Copy
+Edit
+{ "score": 32, "label": "Low Risk", "message": "Your brain is in a stable state today." }
+🔶 SECTION 3: QUICK ACTIONS (2 Buttons)
+
+Keep exactly same icons, spacing, alignment as per Figma.
+
+No stretching or inline styles allowed.
+
+Buttons must route:
+
+Log Symptoms → /log/symptoms
+
+Add Food → /log/food
+
+🔶 SECTION 4: RECENT ACTIVITY TIMELINE
+
+This is a vertical list of 3 cards.
+
+Each should contain icon, activity label, time (right-aligned).
+
+Use rounded card, soft shadow as per Figma.
+
+API: /api/user/recent-activity/:userId
+
+json
+Copy
+Edit
+[
+  { "type": "Food", "description": "Logged lunch", "time": "12:30", "icon": "🍗" },
+  { "type": "Sleep", "description": "Sleep data synced", "time": "6:45", "icon": "🛌" },
+  { "type": "Symptoms", "description": "Mild headache", "time": "14:15", "icon": "😣" }
+]
+🔶 SECTION 5: MY SPACE CARDS
+
+5 tappable cards:
+
+Daily Log → /log
+
+Insights → /insights
+
+History & Trends → /history
+
+Medications → /medications
+
+Settings → /settings
+
+Strict rule: Match positioning and column layout exactly like Figma.
+
+📦 REQUIRED BACKEND ENDPOINTS:
+
+GET /api/user/profile/:userId
+
+GET /api/user/risk-score/:userId
+
+GET /api/user/recent-activity/:userId
+
+🧪 BEFORE DELIVERY: VISUAL QA CHECKLIST
+
+✅ Circular ring placement center-aligned
+✅ Padding and font match Figma
+✅ Cards have shadow & border-radius
+✅ Buttons are same size as Figma
+✅ Profile image loads properly
+✅ All navigation works as expected
+✅ Only data logic updated; layout untouched
+✅ No other screen impacted
+✅ Works for testuser login sessio

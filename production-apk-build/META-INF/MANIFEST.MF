@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Created-By: Zivora Production Build
+Built-By: Zivora Team
+
+Name: AndroidManifest.xml
+SHA-256-Digest: $(echo -n "$(cat production-apk-build/AndroidManifest.xml)" | sha256sum | cut -d' ' -f1)
+

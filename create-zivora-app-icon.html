@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Zivora App Icon Generator</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background: #f0f0f0; }
+        .container { max-width: 800px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; }
+        .icon-preview { display: flex; gap: 20px; flex-wrap: wrap; margin: 20px 0; }
+        .icon-size { text-align: center; }
+        canvas { border: 1px solid #ccc; border-radius: 15px; margin: 5px; }
+        .download-btn { background: #007AFF; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin: 5px; }
+        .color-picker { margin: 10px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Zivora App Icon Generator</h1>
+        <p>Professional medical app icon for App Store submission</p>
+        
+        <div class="color-picker">
+            <label>Primary Color: <input type="color" id="primaryColor" value="#667eea"></label>
+            <label>Secondary Color: <input type="color" id="secondaryColor" value="#764ba2"></label>
+            <button onclick="generateIcons()">Generate Icons</button>
+        </div>
+        
+        <div class="icon-preview" id="iconPreview"></div>
+        
+        <div id="downloadButtons"></div>
+    </div>
+
+    <script>
+        const iconSizes = [
+            { size: 1024, name: "App Store", filename: "AppIcon-1024.png" },
+            { size: 180, name: "iPhone 3x", filename: "AppIcon-180.png" },
+            { size: 120, name: "iPhone 2x", filename: "AppIcon-120.png" },
+            { size: 87, name: "Settings 3x", filename: "AppIcon-87.png" },
+            { size: 80, name: "Settings 2x", filename: "AppIcon-80.png" },
+            { size: 58, name: "Settings", filename: "AppIcon-58.png" },
+            { size: 60, name: "iPhone", filename: "AppIcon-60.png" },
+            { size: 40, name: "Spotlight", filename: "AppIcon-40.png" },
+            { size: 29, name: "Settings", filename: "AppIcon-29.png" },
+            { size: 20, name: "Notification", filename: "AppIcon-20.png" }
+        ];
+
+        function drawZivoraIcon(canvas, size) {
+            const ctx = canvas.getContext('2d');
+            const primary = document.getElementById('primaryColor').value;
+            const secondary = document.getElementById('secondaryColor').value;
+            
+            // Clear canvas
+            ctx.clearRect(0, 0, size, size);
+            
+            // Create gradient background
+            const gradient = ctx.createLinearGradient(0, 0, size, size);
+            gradient.addColorStop(0, primary);
+            gradient.addColorStop(1, secondary);
+            
+            // Rounded rectangle background
+            const radius = size * 0.18; // iOS app icon corner radius
+            ctx.fillStyle = gradient;
+            roundedRect(ctx, 0, 0, size, size, radius);
+            ctx.fill();
+            
+            // Draw brain/medical icon
+            const centerX = size / 2;
+            const centerY = size / 2;
+            const iconSize = size * 0.5;
+            
+            // Brain shape
+            ctx.fillStyle = 'white';
+            ctx.globalAlpha = 0.9;
+            
+            // Main brain outline
+            ctx.beginPath();
+            ctx.ellipse(centerX, centerY - iconSize * 0.1, iconSize * 0.4, iconSize * 0.35, 0, 0, 2 * Math.PI);
+            ctx.fill();
+            
+            // Brain hemispheres line
+            ctx.strokeStyle = primary;
+            ctx.lineWidth = size * 0.02;
+            ctx.globalAlpha = 0.3;
+            ctx.beginPath();
+            ctx.moveTo(centerX, centerY - iconSize * 0.3);
+            ctx.lineTo(centerX, centerY + iconSize * 0.2);
+            ctx.stroke();
+            
+            // Add medical cross or pulse line
+            ctx.strokeStyle = 'white';
+            ctx.lineWidth = size * 0.025;
+            ctx.globalAlpha = 0.8;
+            ctx.beginPath();
+            // Pulse line effect
+            const pulseY = centerY + iconSize * 0.3;
+            ctx.moveTo(centerX - iconSize * 0.3, pulseY);
+            ctx.lineTo(centerX - iconSize * 0.1, pulseY);
+            ctx.lineTo(centerX - iconSize * 0.05, pulseY - iconSize * 0.1);
+            ctx.lineTo(centerX, pulseY);
+            ctx.lineTo(centerX + iconSize * 0.05, pulseY + iconSize * 0.1);
+            ctx.lineTo(centerX + iconSize * 0.1, pulseY);
+            ctx.lineTo(centerX + iconSize * 0.3, pulseY);
+            ctx.stroke();
+            
+            ctx.globalAlpha = 1.0;
+        }
+        
+        function roundedRect(ctx, x, y, width, height, radius) {
+            ctx.beginPath();
+            ctx.moveTo(x + radius, y);
+            ctx.lineTo(x + width - radius, y);
+            ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+            ctx.lineTo(x + width, y + height - radius);
+            ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+            ctx.lineTo(x + radius, y + height);
+            ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+            ctx.lineTo(x, y + radius);
+            ctx.quadraticCurveTo(x, y, x + radius, y);
+            ctx.closePath();
+        }
+        
+        function generateIcons() {
+            const preview = document.getElementById('iconPreview');
+            const downloadDiv = document.getElementById('downloadButtons');
+            preview.innerHTML = '';
+            downloadDiv.innerHTML = '';
+            
+            iconSizes.forEach(iconInfo => {
+                // Create canvas
+                const canvas = document.createElement('canvas');
+                canvas.width = iconInfo.size;
+                canvas.height = iconInfo.size;
+                canvas.style.width = Math.min(iconInfo.size, 100) + 'px';
+                canvas.style.height = Math.min(iconInfo.size, 100) + 'px';
+                
+                // Draw icon
+                drawZivoraIcon(canvas, iconInfo.size);
+                
+                // Create preview container
+                const container = document.createElement('div');
+                container.className = 'icon-size';
+                container.innerHTML = `<div>${iconInfo.name}</div><div>${iconInfo.size}×${iconInfo.size}</div>`;
+                container.appendChild(canvas);
+                preview.appendChild(container);
+                
+                // Create download button
+                const btn = document.createElement('button');
+                btn.className = 'download-btn';
+                btn.textContent = `Download ${iconInfo.size}×${iconInfo.size}`;
+                btn.onclick = () => {
+                    const link = document.createElement('a');
+                    link.download = iconInfo.filename;
+                    link.href = canvas.toDataURL();
+                    link.click();
+                };
+                downloadDiv.appendChild(btn);
+            });
+            
+            // Add download all button
+            const downloadAllBtn = document.createElement('button');
+            downloadAllBtn.className = 'download-btn';
+            downloadAllBtn.textContent = 'Download All Icons';
+            downloadAllBtn.style.background = '#34C759';
+            downloadAllBtn.onclick = downloadAllIcons;
+            downloadDiv.appendChild(downloadAllBtn);
+        }
+        
+        function downloadAllIcons() {
+            iconSizes.forEach((iconInfo, index) => {
+                setTimeout(() => {
+                    const canvas = document.createElement('canvas');
+                    canvas.width = iconInfo.size;
+                    canvas.height = iconInfo.size;
+                    drawZivoraIcon(canvas, iconInfo.size);
+                    
+                    const link = document.createElement('a');
+                    link.download = iconInfo.filename;
+                    link.href = canvas.toDataURL();
+                    link.click();
+                }, index * 500); // Stagger downloads
+            });
+        }
+        
+        // Generate default icons on load
+        window.onload = generateIcons;
+    </script>
+</body>
+</html>

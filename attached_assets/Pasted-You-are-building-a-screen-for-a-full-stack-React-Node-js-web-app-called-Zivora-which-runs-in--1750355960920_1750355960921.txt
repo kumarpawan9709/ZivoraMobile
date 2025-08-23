@@ -1,0 +1,114 @@
+You are building a screen for a full-stack React + Node.js web app called **Zivora**, which runs in **dark mode only**.
+
+This new screen is titled **Risk Score Details** and should appear when the user clicks **“View Risk Factors”** from the Dashboard.  
+Use the uploaded screenshot for exact reference — match layout, colors, fonts, paddings, and spacings **pixel-perfect**.
+
+---
+
+## 🔗 Navigation
+
+- Route this screen to `/risk-score`
+- Add a **back button** on top left that returns to `/dashboard`
+- Use React Router for screen transitions
+- Also include the ⚙️ settings icon at top right, which routes to `/settings`
+
+---
+
+## ✅ Frontend UI Structure
+
+### 1. 🔵 Top Section: Risk Score Card
+- Circle chart showing migraine score (example: 32)
+- Label: “Low Risk” below the number
+- Caption: “Your brain is in a stable state today. Light triggers are manageable.”
+- Tag/Pill below score: “Safe Zone” in purple
+
+### 2. 🧠 Health Indicators
+Display 3 circular indicators:
+- HRV → `42ms`, label: “Good”
+- Stress → “Low”, label: “Stable”
+- Sleep → “7.2h”, label: “Quality”
+
+Use visually distinct colors/icons, just like the screenshot.
+
+### 3. 🌍 Environmental Triggers
+Display 3 cards:
+- Barometric Pressure: `29.8 inHg`, label: “Stable”
+- Weather Impact: “Clear, 72°F”, label: “Low”
+- Humidity: `45%`, label: “Normal”
+
+Each should include a round icon, text, and label tag on right.
+
+---
+
+### 4. 📦 Action Buttons
+At the bottom, include:
+- “Detailed Insights” (primary purple button) → route to `/insights`
+- “Log Today’s Data” → route to `/log`
+- “Educational Content” → route to `/learn`
+
+Use full-width buttons, with proper spacing, rounded corners, and icons where applicable.
+
+---
+
+## 🔌 Backend & Data Integration
+
+### 1. API Routes (Node.js)
+Use either Firebase Firestore or mock JSON backend for now.
+
+- `GET /api/user/risk-score`
+Returns:
+```json
+{
+  "score": 32,
+  "riskLevel": "Low Risk",
+  "zone": "Safe Zone",
+  "status": "Your brain is in a stable state today.",
+  "triggers": "Light triggers are manageable.",
+  "healthIndicators": {
+    "hrv": { "value": "42ms", "quality": "Good" },
+    "stress": { "value": "Low", "quality": "Stable" },
+    "sleep": { "value": "7.2h", "quality": "Quality" }
+  },
+  "environmentalTriggers": {
+    "barometricPressure": { "value": "29.8 inHg", "quality": "Stable" },
+    "weather": { "value": "Clear, 72°F", "quality": "Low" },
+    "humidity": { "value": "45%", "quality": "Normal" }
+  }
+}
+2. Frontend
+On screen load, fetch data from /api/user/risk-score
+
+Use useState and useEffect to display values
+
+Format values into appropriate components
+
+Make sure UI handles empty/failed API states cleanly
+
+🎨 Styling Instructions
+Use TailwindCSS or any CSS framework you are using already
+
+Use dark background (#0E0F1B), white or gray text, soft cards
+
+Match colors of icons, buttons, circles, and tags exactly as shown
+
+Ensure spacing, padding, and alignment is identical
+
+Fully responsive on mobile
+
+🚫 Do Not:
+Modify other screens
+
+Remove routes like /dashboard or /settings
+
+Hardcode values outside API (except as demo mock fallback)
+
+📁 Folder Structure
+Organize as:
+
+/pages/RiskScore.jsx or /components/RiskScore/
+
+/api/riskScore.js
+
+Firebase setup under /firebase/firebase.js
+
+💡 Goal: Deliver a working, mobile-responsive Risk Score screen with real API loading logic and full visual matching to the provided screenshot. Data can be mocked for now but should be scalable.

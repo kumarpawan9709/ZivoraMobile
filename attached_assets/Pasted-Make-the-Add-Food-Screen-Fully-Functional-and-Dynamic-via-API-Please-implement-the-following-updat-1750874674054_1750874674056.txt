@@ -1,0 +1,130 @@
+Make the “Add Food” Screen Fully Functional and Dynamic via API
+Please implement the following updates and enhancements to the “Add Food” screen in accordance with our app structure and standards.
+
+✅ Functional Goals
+Make all components dynamic:
+
+No static data should remain.
+
+All food items, nutritional details, and saved logs must come from or be saved to the database via API.
+
+Integrate all features via RESTful APIs:
+
+All data must be fetched, updated, or created through backend APIs using user-specific data (authenticated userId).
+
+React Query or your preferred hook should manage caching, invalidation, and loading state.
+
+Strictly preserve design:
+
+The layout, UI spacing, icons, fonts, and structure must match the current screen and Figma reference exactly.
+
+No visual components or UX elements should be altered.
+
+Ensure component isolation:
+
+This change must not affect any other screen or shared component in the application.
+
+Only the AddFoodScreen (or equivalent file/component) should be updated.
+
+📌 Detailed Component Instructions
+1. Search Food Item (Searchbar)
+
+Fetch matching food items from the database via API as the user types.
+
+Use endpoint: GET /api/foods/search?query=<keyword>
+
+Display results in real-time in the Recent Foods section below.
+
+2. Scan Button
+
+This should open the camera (if permission is granted) and allow barcode scanning.
+
+On scan, fetch item via: GET /api/foods/barcode/:code
+
+If not yet implemented, keep the button disabled with a “Coming Soon” tooltip.
+
+3. Favorites Button
+
+When clicked, fetch user’s favorited foods from:
+GET /api/user/favorites/:userId
+
+Allow adding/removing food to/from favorites using:
+POST /api/user/favorites and DELETE /api/user/favorites/:foodId
+
+4. Recent Foods Section
+
+Display up to 10 recent food items logged by the user:
+
+API: GET /api/user/food-log/recent/:userId
+
+Clicking a food item should populate the quantity and nutrition summary dynamically.
+
+5. Food Detail Card (Selected Food)
+
+Should display the full details of selected food (name, quantity unit, nutritional values).
+
+Quantity + / - buttons should increase/decrease count with proper min = 1 limit.
+
+Unit dropdown should be dynamic from the API field:
+Example: cup, slice, gram, etc.
+
+6. Nutrition Summary
+
+Automatically calculate based on quantity and unit from backend logic.
+
+API: POST /api/foods/calculate
+Payload: { foodId, quantity, unit }
+Response: { calories, protein, carbs, fat }
+
+7. Meal Type Toggle (Breakfast, Lunch, etc.)
+
+Select one from four values.
+
+Persist this with the food log entry.
+
+8. Notes (Optional Field)
+
+Simple text input saved along with the entry.
+
+9. Save Button
+
+Must submit the selected food to the user's food log table:
+
+API: POST /api/user/food-log
+
+Payload:
+
+json
+Copy
+Edit
+{
+  "userId": 2,
+  "foodId": 12,
+  "quantity": 1,
+  "unit": "cup",
+  "mealType": "Breakfast",
+  "notes": "custom note",
+  "loggedAt": "ISO timestamp"
+}
+Show success toast on successful save.
+
+Redirect to previous screen or show “log saved” message.
+
+🔒 Error Handling & Validation
+All input fields must be validated (quantity > 0, food selected).
+
+On API error, show user-friendly error message.
+
+Disable Save button during loading state.
+
+🧪 Testing Instructions
+Verify API response via network tab.
+
+Check that:
+
+Saved entries reflect in Daily Log or History.
+
+Quantity and nutrition data update dynamically.
+
+Favorites show correctly.
+
