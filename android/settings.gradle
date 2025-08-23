@@ -11,8 +11,8 @@ dependencyResolutionManagement {
   repositories {
     google()
     mavenCentral()
-    // JitPack is optional; keep only if you actually use JitPack deps
-    maven { url 'https://jitpack.io' }
+    // Keep JitPack only if you actually depend on JitPack libraries:
+    // maven { url 'https://jitpack.io' }
   }
 }
 
