@@ -23,41 +23,36 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
-      - name: Accept licenses & install build-tools
+      - name: Accept licenses & install platform/build-tools
         run: |
           yes | sdkmanager --licenses > /dev/null
           sdkmanager "platform-tools" "platforms;android-34" "build-tools;34.0.0"
 
-      # 👇 Make gradlew executable (Windows repos usually need this)
       - name: Make Gradle wrapper executable
         run: chmod +x android/gradlew
 
-      # Optional: If your project needs Node/Capacitor, uncomment these:
-      # - name: Setup Node
-      #   uses: actions/setup-node@v4
-      #   with:
-      #     node-version: "20"
-      #     cache: "npm"
-      # - name: Install deps
-      #   run: if [ -f package.json ]; then npm ci; fi
-      # - name: Build web & Capacitor sync
-      #   run: |
-      #     if [ -f package.json ]; then npm run build || true; fi
-      #     if ls capacitor.config.* >/dev/null 2>&1; then
-      #       npx cap copy android
-      #       npx cap sync android
-      #     fi
-
-      - name: Build Release APK
+      - name: Build Release APK (verbose)
         working-directory: android
         env:
-          # More logs to diagnose if anything fails
-          GRADLE_OPTS: "-Dorg.gradle.jvmargs=-Xmx2g -Dorg.gradle.daemon=false"
-        run: ./gradlew clean assembleRelease --stacktrace --info
+          GRADLE_OPTS: "-Dorg.gradle.jvmargs=-Xmx3g -Dorg.gradle.daemon=false"
+        run: ./gradlew --version && ./gradlew clean assembleRelease --stacktrace --info --warning-mode all
 
-      - name: Upload APK artifact
+      - name: List build outputs (debug)
+        if: always()
+        run: |
+          echo "Outputs under android/app/build/outputs:"
+          ls -R android/app/build/outputs || true
+
+      - name: Upload APK (if present)
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: app-release-unsigned
           path: android/app/build/outputs/apk/release/*.apk
+
+      - name: Upload Gradle problems report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gradle-problems-report
+          path: android/build/reports/problems/**/*

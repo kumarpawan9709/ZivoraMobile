@@ -4,40 +4,36 @@ plugins {
 }
 
 android {
-  namespace "com.example.zivora"            // TODO: set your real package
+  namespace "com.example.zivora"            // TODO: set to your real package
   compileSdk 34
 
   defaultConfig {
-    applicationId "com.example.zivora"      // TODO: set your real app id
+    applicationId "com.example.zivora"      // TODO: set to your real package
     minSdk 23                                // or your current minSdk
     targetSdk 34
-    versionCode 1                            // keep your values if different
+    versionCode 1                            // keep your existing values if different
     versionName "1.0"
   }
 
-  // Java/Kotlin toolchains
+  // Java/Kotlin toolchains (AGP 8 likes Java 17)
   compileOptions {
-    sourceCompatibility JavaVersion.VERSION_11
-    targetCompatibility JavaVersion.VERSION_11
+    sourceCompatibility JavaVersion.VERSION_17
+    targetCompatibility JavaVersion.VERSION_17
   }
   // If you use Kotlin, also set:
-  // kotlinOptions { jvmTarget = '11' }
+  // kotlinOptions { jvmTarget = '17' }
 
   signingConfigs {
     debug { }
     release {
-      // On CI (GitHub Actions), sign with debug key so assembleRelease never fails
+      // On CI (GitHub Actions), sign with debug key so assembleRelease doesn't fail
       if (System.getenv("CI") != null || System.getenv("GITHUB_ACTIONS") != null) {
         storeFile file("${System.properties['user.home']}/.android/debug.keystore")
         storePassword "android"
         keyAlias "androiddebugkey"
         keyPassword "android"
       }
-      // Locally, replace with your real release keystore when publishing:
-      // storeFile file("../keystore/release.keystore")
-      // storePassword System.getenv("KEYSTORE_PASSWORD")
-      // keyAlias System.getenv("KEY_ALIAS")
-      // keyPassword System.getenv("KEY_PASSWORD")
+      // For Play Store, replace with your real release keystore & secrets later.
     }
   }
 
@@ -46,7 +42,7 @@ android {
       signingConfig signingConfigs.release
       minifyEnabled false
       shrinkResources false
-      // If you enable minify later, keep default proguard:
+      // If you enable minify later:
       // proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
     }
     debug {
@@ -54,7 +50,7 @@ android {
     }
   }
 
-  // If you see duplicate file errors, uncomment:
+  // If duplicate resource errors appear, you can add:
   // packagingOptions {
   //   resources {
   //     excludes += ["META-INF/*"]
