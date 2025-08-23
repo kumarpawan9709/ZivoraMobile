@@ -1,16 +1,7 @@
-buildscript {
-    repositories {
-        google()
-        jcenter()
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:4.1.0'
-    }
-}
+// android/build.gradle (top-level)
 
-allprojects {
-    repositories {
-        google()
-        jcenter()
-    }
+plugins {
+    id 'com.android.application' version '8.5.2' apply false
+    // If your app uses Kotlin, keep the next line; if not, it won’t be applied anyway.
+    id 'org.jetbrains.kotlin.android' version '1.9.24' apply false
 }
