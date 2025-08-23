@@ -31,6 +31,19 @@ jobs:
       - name: Make Gradle wrapper executable
         run: chmod +x android/gradlew
 
+      - name: Generate debug keystore for CI
+        run: |
+          mkdir -p ~/.android
+          keytool -genkeypair -v \
+            -storetype PKCS12 \
+            -keystore ~/.android/debug.keystore \
+            -storepass android \
+            -keypass android \
+            -dname "CN=Android Debug,O=Android,C=US" \
+            -alias androiddebugkey \
+            -keyalg RSA -keysize 2048 -validity 10000
+
+
       - name: Build Release APK (verbose)
         working-directory: android
         env:
