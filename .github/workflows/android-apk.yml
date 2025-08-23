@@ -1,9 +1,9 @@
 name: Android APK
 
 on:
-  workflow_dispatch: {}   # Run manually
+  workflow_dispatch: {}
   push:
-    branches: [ main ]    # Optional: auto-run on each push
+    branches: [ main ]
 
 jobs:
   build:
@@ -28,11 +28,35 @@ jobs:
           yes | sdkmanager --licenses > /dev/null
           sdkmanager "platform-tools" "platforms;android-34" "build-tools;34.0.0"
 
+      # 👇 Make gradlew executable (Windows repos usually need this)
+      - name: Make Gradle wrapper executable
+        run: chmod +x android/gradlew
+
+      # Optional: If your project needs Node/Capacitor, uncomment these:
+      # - name: Setup Node
+      #   uses: actions/setup-node@v4
+      #   with:
+      #     node-version: "20"
+      #     cache: "npm"
+      # - name: Install deps
+      #   run: if [ -f package.json ]; then npm ci; fi
+      # - name: Build web & Capacitor sync
+      #   run: |
+      #     if [ -f package.json ]; then npm run build || true; fi
+      #     if ls capacitor.config.* >/dev/null 2>&1; then
+      #       npx cap copy android
+      #       npx cap sync android
+      #     fi
+
       - name: Build Release APK
         working-directory: android
-        run: ./gradlew clean assembleRelease
+        env:
+          # More logs to diagnose if anything fails
+          GRADLE_OPTS: "-Dorg.gradle.jvmargs=-Xmx2g -Dorg.gradle.daemon=false"
+        run: ./gradlew clean assembleRelease --stacktrace --info
 
       - name: Upload APK artifact
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: app-release-unsigned
