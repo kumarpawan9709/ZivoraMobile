@@ -1,17 +1,41 @@
-apply plugin: 'com.android.application'
+plugins {
+    id 'com.android.application'
+    // id 'org.jetbrains.kotlin.android'  // uncomment if you actually use Kotlin
+}
 
 android {
-    compileSdkVersion 33
+    namespace "com.yourcompany.zivora"    // <-- keep your real package if present
+    compileSdk 34
+
     defaultConfig {
-        applicationId "com.zivoramobile.zivora"
-        minSdkVersion 22
-        targetSdkVersion 33
+        applicationId "com.yourcompany.zivora"  // keep existing if already set
+        minSdk 23                                // or your current minSdk
+        targetSdk 34
         versionCode 1
-        versionName "1.0.0"
+        versionName "1.0"
     }
+
+    signingConfigs {
+        debug { }
+        release {
+            // On CI (GitHub Actions), sign with debug key so assembleRelease never fails
+            if (System.getenv("CI") != null || System.getenv("GITHUB_ACTIONS") != null) {
+                storeFile file("${System.properties['user.home']}/.android/debug.keystore")
+                storePassword "android"
+                keyAlias "androiddebugkey"
+                keyPassword "android"
+            }
+        }
+    }
+
     buildTypes {
         release {
+            signingConfig signingConfigs.release
             minifyEnabled false
+            shrinkResources false
+        }
+        debug {
+            signingConfig signingConfigs.debug
         }
     }
 }
