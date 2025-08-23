@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="app_name">Zivora</string>
-    <string name="title_activity_main">Zivora - Migraine Tracker</string>
-    <string name="package_name">com.zivoramobile.zivora</string>
-    <string name="custom_url_scheme">zivora</string>
-    <string name="server_url">https://3ee4d6a9-e442-4a38-b9d4-69a8bb496f55-00-2spibzzix19bx.janeway.replit.dev</string>
-    <string name="version_name">1.0.0</string>
-</resources>
